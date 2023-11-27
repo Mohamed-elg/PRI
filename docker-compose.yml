@@ -2,19 +2,19 @@ version: "3.8"
 
 services:
   db:
-    container_name: erp-db
+    container_name: db
     image: postgres
     restart: always
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
-      POSTGRES_DB: acc_db
+      POSTGRES_DB: bbai_db
     ports:
       - "5432:5432"
     volumes:
       - ./pg_data:/var/lib/postgresql/data
   pgadmin:
-    container_name: erp-pgadmin
+    container_name: pgadmin
     image: dpage/pgadmin4
     restart: always
     environment:
