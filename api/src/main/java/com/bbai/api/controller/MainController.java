@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/")
 public class MainController {
 
     @GetMapping("/")
