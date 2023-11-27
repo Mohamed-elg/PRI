@@ -1,0 +1,18 @@
+label:not(.task), legend {
+    background-color: #012061;
+    color: #ffffff;
+    padding-left: 2%;
+}
+
+.task-row{
+    margin:0;
+    margin-top: 1%;
+}
+
+input {
+    margin-top: 1%;
+}
+
+.dropdown-toggle {
+    border-color: black;
+}
