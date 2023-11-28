@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { MotorCharacteristicsComponent } from './motor-characteristics/motor-characteristics.component';
 import { EquipmentCharacteristicsComponent } from './equipment-characteristics/equipment-characteristics.component';
 import { TasksComponent } from './tasks/tasks.component';
+import { MechanicalSheetComponent } from './mechanical-sheet/mechanical-sheet.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MotorCharacteristicsComponent,
     EquipmentCharacteristicsComponent,
-    TasksComponent
+    TasksComponent,
+    MechanicalSheetComponent
   ],
   imports: [
     BrowserModule,
