@@ -1,4 +1,4 @@
-label:not(.coupling), h2, legend {
+label:not(.coupling), h3, legend {
     background-color: #012061;
     color: #ffffff;
     padding-left: 2%;
@@ -9,7 +9,7 @@ label:not(.coupling), h2, legend {
     margin-top: 1%;
 }
 
-h2{
+h3{
     padding: 1%;
     padding-left: 2%;
     margin: 0;

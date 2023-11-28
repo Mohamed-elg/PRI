@@ -1,0 +1,35 @@
+label:not(.form-check-label), h3, legend {
+    background-color: #012061;
+    color: #ffffff;
+    padding-left: 2%;
+}
+
+h3{
+    padding: 1%;
+    padding-left: 2%;
+    margin: 0;
+}
+
+input {
+    margin-top: 1%;
+}
+
+#comment {
+    margin-left: 5%;
+}
+
+.form-check {
+    display: flex;
+    align-items: center;
+}
+
+.form-check-input {
+    margin-right: 5%;
+}
+
+.invalid-feedback,
+.valid-feedback {
+    margin-left: 5%;
+    margin-top: 0;
+    width: fit-content;
+}
