@@ -8,6 +8,7 @@ import { EquipmentCharacteristicsComponent } from './equipment-characteristics/e
 import { TasksComponent } from './tasks/tasks.component';
 import { MechanicalSheetComponent } from './mechanical-sheet/mechanical-sheet.component';
 import { DimensionalInspectionComponent } from './dimensional-inspection/dimensional-inspection.component';
+import { QuotationComponent } from './quotation/quotation.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { DimensionalInspectionComponent } from './dimensional-inspection/dimensi
     EquipmentCharacteristicsComponent,
     TasksComponent,
     MechanicalSheetComponent,
-    DimensionalInspectionComponent
+    DimensionalInspectionComponent,
+    QuotationComponent
   ],
   imports: [
     BrowserModule,
