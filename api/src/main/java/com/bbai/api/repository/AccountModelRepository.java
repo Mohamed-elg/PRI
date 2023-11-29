@@ -8,4 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AccountModelRepository extends JpaRepository<accountModel, Long> {
     Optional<accountModel> findByIdentifiantAndPassword(String identifiant, String password);
+
+    Optional<accountModel> findByToken(String token);
 }
