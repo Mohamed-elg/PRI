@@ -9,6 +9,7 @@ import { TasksComponent } from './tasks/tasks.component';
 import { MechanicalSheetComponent } from './mechanical-sheet/mechanical-sheet.component';
 import { DimensionalInspectionComponent } from './dimensional-inspection/dimensional-inspection.component';
 import { QuotationComponent } from './quotation/quotation.component';
+import { ConnectionComponent } from './connection/connection.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { QuotationComponent } from './quotation/quotation.component';
     TasksComponent,
     MechanicalSheetComponent,
     DimensionalInspectionComponent,
-    QuotationComponent
+    QuotationComponent,
+    ConnectionComponent
   ],
   imports: [
     BrowserModule,
