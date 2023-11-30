@@ -27,15 +27,12 @@ public class accountService {
         return accountModelRepository.findById(accountId);
     }
 
-    public Optional<accountModel> getAccountByToken(String token) {
-        return accountModelRepository.findByToken(token);
-    }
-
     public accountModel createAccount(String identifiant, String password) {
         accountModel newAccount = new accountModel();
         newAccount.setIdentifiant(identifiant);
         newAccount.setPassword(password);
-        newAccount.setToken(identifiant + password);
+        String token = identifiant + password;
+        newAccount.setToken(token);
         return accountModelRepository.save(newAccount);
     }
 
