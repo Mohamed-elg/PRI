@@ -1,0 +1,30 @@
+:root {
+    --primary-color: #012061;
+    --secondary-color: #ffffff;
+}
+
+body {
+    margin: 0;
+}
+
+legend, .task-row, input, .dropdown-toggle, .legend-container, .form-group {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+input {
+    margin-top: 1%;
+}
+
+.dropdown-toggle {
+    border-color: var(--primary-color);
+}
+
+.form-group {
+    display: flex;
+   
+    flex-direction: column;
+    align-items: center; /* Alignement vertical au centre */
+    justify-content: space-around; /* Espacement équitable entre les éléments */
+}

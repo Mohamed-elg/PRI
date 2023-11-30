@@ -1,0 +1,50 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 1px solid #012061;
+    padding: 8px;
+    text-align: center;
+    
+}
+
+th {
+    background-color: #012061;
+    color: white;
+}
+
+.blanc {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.noir {
+    background-color: #012061;
+    color: #ffffff;
+}
+
+.bleu {
+    background-color: #012061;
+    color: #ffffff;
+}
+
+/* Ajouter des styles spécifiques pour les cellules éditables */
+.editable {
+    background-color: #ffffff;
+    border: none;
+}
+
+/* Ajouter des styles spécifiques pour les cellules non éditables */
+.non-editable {
+    background-color: #012061;
+    color: #ffffff;
+}
+
+.editable {
+    background-color: #ffffff;
+    border: 1px solid #012061; /* Ajouter une bordure à la cellule éditable */
+    padding: 7px; /* Ajuster le rembourrage pour que la bordure ne soit pas trop proche du texte */
+}

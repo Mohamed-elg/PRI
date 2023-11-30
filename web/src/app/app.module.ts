@@ -10,6 +10,10 @@ import { MechanicalSheetComponent } from './mechanical-sheet/mechanical-sheet.co
 import { DimensionalInspectionComponent } from './dimensional-inspection/dimensional-inspection.component';
 import { QuotationComponent } from './quotation/quotation.component';
 import { ConnectionComponent } from './connection/connection.component';
+import { ClientComponent } from './client/client.component';
+import { MotorComponent } from './motor/motor.component';
+import { OtherEquipementComponent } from './other-equipement/other-equipement.component';
+import { DiagnosticComponent } from './diagnostic/diagnostic.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import { ConnectionComponent } from './connection/connection.component';
     MechanicalSheetComponent,
     DimensionalInspectionComponent,
     QuotationComponent,
-    ConnectionComponent
+    ConnectionComponent,
+    ClientComponent,
+    MotorComponent,
+    OtherEquipementComponent,
+    DiagnosticComponent
   ],
   imports: [
     BrowserModule,
