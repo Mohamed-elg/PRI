@@ -3,28 +3,22 @@
     --secondary-color: #ffffff;
 }
 
-body {
-    margin: 0;
+form {
+    margin-bottom: 40px;
+    margin-top: 20px;
 }
 
-legend, .task-row, input, .dropdown-toggle, .legend-container, .form-group {
-    flex: 1;
-    display: flex;
-    align-items: center;
+.row {
+    margin-left: 4%;
+    margin-right: 4%;
 }
 
-input {
-    margin-top: 1%;
+.btn {
+    color: #ffffff;
+    background-color: #012061;
 }
 
-.dropdown-toggle {
-    border-color: var(--primary-color);
-}
-
-.form-group {
-    display: flex;
-   
-    flex-direction: column;
-    align-items: center; /* Alignement vertical au centre */
-    justify-content: space-around; /* Espacement équitable entre les éléments */
+.btn:active {
+    color: #ffffff;
+    background-color: #00143f;
 }

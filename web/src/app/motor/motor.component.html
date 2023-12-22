@@ -1,27 +1,41 @@
   <form action="/" method="post" class="form-group">
-   
-    <div class="dropdown">
-      <select id="selectType">
-        <option value="moteur">Moteur</option>
-        <option value="equipement">Équipement</option>
-      </select>
-
- 
-      
-        <select id="optionsDropdown">
-          <option value="moteur-synchrone">Moteur synchrone</option>
-          <option value="moteur-asynchrone">Moteur asynchrone</option>
-          <option value="autre-moteur">Autre</option>
-          <option value="reducteur">Réducteur</option>
-          <option value="autre-equipement">Autre équipement</option>
-        </select>
-     
-
-     
+    <div class="row">
+      <div class="col">
+        <div class="dropdown">
+          <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Equipement
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Moteur</a></li>
+            <li><a class="dropdown-item" href="#">Réducteur</a></li>
+            <li><a class="dropdown-item" href="#">Pompe</a></li>
+            <li><a class="dropdown-item" href="#">Ventilateur</a></li>
+            <li><a class="dropdown-item" href="#">Soufflante</a></li>
+            <li><a class="dropdown-item" href="#">Autre</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col">
+        <div class="dropdown">
+          <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Détail
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Moteur synchrone</a></li>
+            <li><a class="dropdown-item" href="#">Moteur asynchrone</a></li>
+            <li><a class="dropdown-item" href="#">Moteur courant continu</a></li>
+            <li><a class="dropdown-item" href="#">Moteur SERVO</a></li>
+            <li><a class="dropdown-item" href="#">Pompe centrifuge</a></li>
+            <li><a class="dropdown-item" href="#">Pompe à vide</a></li>
+            <li><a class="dropdown-item" href="#">Autre</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col">
         <input type="text" class="form-control rounded" id="autreOption" placeholder="Spécifiez votre option">
-        <button id="addOption" type="button">+</button>
-      
+      </div>
+      <div class="col">
+        <button id="addOption" type="button" class="btn btn-light">+</button>
+      </div>
     </div>
-
- 
   </form>
