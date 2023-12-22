@@ -1,13 +1,14 @@
-label:not(.form-check-label), h3, legend {
+label:not(.form-check-label), h5, legend {
     background-color: #012061;
     color: #ffffff;
     padding-left: 2%;
 }
 
-h3{
+h5{
     padding: 1%;
     padding-left: 2%;
     margin: 0;
+    padding-bottom: 15px;
 }
 
 #comment {
@@ -29,4 +30,10 @@ h3{
     margin-left: 5%;
     margin-top: 0;
     width: fit-content;
+}
+
+.container {
+    margin-left: 4%;
+    margin-right: 4%;
+    margin-bottom: 40px;
 }
