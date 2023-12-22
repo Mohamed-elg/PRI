@@ -7,3 +7,16 @@
 .autre-label {
     margin-top: 10px;
 }
+
+label {
+    margin-left: 15px;
+}
+
+input {
+    margin-left: 10px;
+}
+
+.container {
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
