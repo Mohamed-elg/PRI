@@ -15,6 +15,10 @@ input {
 }
 
 #comment {
-    margin-top: 1%;
+    margin-top: 3%;
     margin-left: 5%;
+}
+
+form {
+    margin-bottom: 40px;
 }
