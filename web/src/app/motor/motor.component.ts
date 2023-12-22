@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-motor',
+  selector: 'motor',
   templateUrl: './motor.component.html',
   styleUrls: ['./motor.component.css']
 })

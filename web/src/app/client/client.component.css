@@ -1,107 +1,50 @@
-form-control.rounded {
-    color: #000000;
-    border: 1px solid #012061;
-    margin-left: 10px;
-    margin-top: 10px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .form-group {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-  }
-  
-  .form-group label {
-    border-radius: 4px;
-    background-color: #012061;
-    color: #ffffff;
-    padding: 8px;
-    margin-left: 10px;
-    min-width: 100px;
-  }
-  
-  /* Ajustement pour aligner la première et la deuxième checkbox sur la même ligne */
-  .form-group [type="checkbox"] + label {
-    margin-top: 10px; /* Ajout d'espace entre les checkboxes et les labels */
-  }
-  
-  .form-group #client {
-    flex: 3; /* 75% */
-  }
-  
-  .form-group #numero {
-    flex: 1; /* 25% */
-  }
-  
-  .form-group #nom {
-    flex: 2; /* Moitié de la ligne */}
-  .form-group #tel,
-  .form-group #date {
-    flex: 1; /* Un quart de la ligne pour chaque é lément */
-   /*margin-left: 10px; /* Ajoutez une marge à gauche pour simuler le calcul avec la marge */
-  }
-  
-  .form-group #ref,
-  .form-group #mail {
-    flex: 1; /* 50% pour chaque élément */
-   /* margin-left: 10px;  Ajoutez une marge à droite pour simuler le calcul avec la marge */
-  }
-  
-  .form-group + .form-group {
-    margin-top: 20px;
-  }
-  
-  
-  .form-group [type="checkbox"] {
-    margin-right: 5px;
-  }
-  
-  .form-group .form-control.rounded {
-    margin-top: 5px;
-  }
-  
-
- 
-:root {
-  --primary-color: #012061;
-  --secondary-color: #ffffff;
+form {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-body {
-  margin: 0; 
+.form-control.rounded {
+  margin-left: 10px;
+  margin-top: 5px;
+  margin-right: 10px;
+  margin-bottom: 5px;
 }
 
 .form-group {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
-  justify-content: space-around; 
+  margin-bottom: 20px;
 }
 
-.form-group div {
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
-  padding: 5px;
-  margin: 5px;
-  border-radius: 5px;
+.form-group label {
+  border-radius: 8px;
+  background-color: #012061;
+  color: #ffffff;
+  padding: 10px;
+  padding-right: 20px;
+  padding-left: 20px;
+  margin-left: 10px;
 }
-    
-    :root {
-      --primary-color: #012061;
-      --secondary-color: #ffffff;
-  }
 
- 
- .form-group {
-      margin: 0 10px; /* Ajustez la marge selon vos besoins */
-  }
+.form-group #client {
+  flex: 3; /* 75% */
+}
 
-  .form-group {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-  }
+.form-group #numero {
+  flex: 1; /* 25% */
+}
 
+.form-group #nom {
+  flex: 2; /* Moitié de la ligne */
+}
 
+.form-group #tel, .form-group #date {
+  flex: 1; /* Un quart de la ligne pour chaque é lément */
+  /*margin-left: 10px; /* Ajoutez une marge à gauche pour simuler le calcul avec la marge */
+}
+  
+.form-group #ref, .form-group #mail {
+  flex: 1; /* 50% pour chaque élément */
+  /* margin-left: 10px;  Ajoutez une marge à droite pour simuler le calcul avec la marge */
+}
