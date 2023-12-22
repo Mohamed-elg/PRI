@@ -10,18 +10,34 @@ legend {
 .task-row{
     margin:0;
     margin-top: 1%;
+    justify-items: center;
 }
 
-input {
-    margin-top: 1%;
-}
-
-.dropdown-toggle {
-    border-color: black;
+.form-check-label, .form-check-input {
+    margin-top: 8px;
 }
 
 .legend-container {
     display: flex;
     align-items: center;
     padding: 0;
+}
+
+form {
+    margin-bottom: 40px;
+    margin-left: 5%;
+}
+
+.dropdown-toggle {
+    color: #ffffff;
+    background-color: #012061;
+}
+
+.dropdown-toggle:active {
+    color: #ffffff;
+    background-color: #00143e;
+}
+
+.form-check {
+    padding-top: 5px;
 }
