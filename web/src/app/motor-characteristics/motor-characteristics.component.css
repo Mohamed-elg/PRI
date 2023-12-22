@@ -1,4 +1,4 @@
-label:not(.coupling), h3, legend {
+label:not(.coupling), h4, legend {
     background-color: #012061;
     color: #ffffff;
     padding-left: 2%;
@@ -9,10 +9,11 @@ label:not(.coupling), h3, legend {
     margin-top: 1%;
 }
 
-h3{
+h4{
     padding: 1%;
     padding-left: 2%;
     margin: 0;
+    padding-bottom: 10px;
 }
 
 input {
