@@ -1,13 +1,15 @@
-label:not(.form-check-label), h3, legend, .head {
+label:not(.form-check-label), h5, legend, .head {
     background-color: #012061;
     color: #ffffff;
     padding-left: 2%;
 }
 
-h3{
+h5{
     padding: 1%;
     padding-left: 2%;
     margin: 0;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 
 input {
@@ -17,4 +19,10 @@ input {
 #comment {
     margin-top: 1%;
     margin-left: 5%;
+}
+
+form {
+    margin-left: 5%;
+    margin-right: 4%;
+    margin-bottom: 20px;
 }
