@@ -7,9 +7,13 @@ import lombok.Data;
 @Data
 public class Moteur {
     @Id
+    @GeneratedValue
     private long Id;
     private String marque;
     private String numSerie;
     @Enumerated(EnumType.STRING)
     private EtypeMoteur typeMoteur;
+
+    //@ManyToOne
+    //private Assemblage assemblage;
 }

@@ -1,25 +1,26 @@
 package com.bbai.api.model.assemblage;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Entity
 @Data
 public class Assemblage {
     @Id
+    @GeneratedValue
     private long id;
 
-    @OneToOne
-    private Moteur moteur;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Moteur> moteurs;
 
-    @OneToOne
-    private Pompe pompe;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Pompe> pompes;
 
-    @OneToOne
-    private Reducteur reducteur;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Reducteur> reducteurs;
 
-    @OneToOne
-    private Ventilateur ventilateur;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Ventilateur> ventilateurs;
 }
