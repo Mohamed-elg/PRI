@@ -1,4 +1,4 @@
-package com.bbai.api.service;
+package com.bbai.api.service.Account;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,9 +17,11 @@ public class tokenValidatorService {
         return compteService.getAccountByToken(incomingToken).isPresent();
     }
 
-    private String getTokenFromHeader(String authorizationHeader) {
+    public String getTokenFromHeader(String authorizationHeader) {
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-            return authorizationHeader.substring(7); // Extract token after "Bearer "
+            return authorizationHeader.substring(7);
+            // Extract token after "Bearer "
+            // TODO : DO BETTER !
         }
         return null;
     }

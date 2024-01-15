@@ -2,13 +2,15 @@ package com.bbai.api.controller;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import com.bbai.api.model.accountModel;
-import com.bbai.api.service.accountService;
-import com.bbai.api.service.tokenValidatorService;
+
+import com.bbai.api.model.Account.accountModel;
+import com.bbai.api.service.Account.accountService;
+import com.bbai.api.service.Account.tokenValidatorService;
 
 import org.springframework.web.bind.annotation.*;
 
@@ -29,9 +31,10 @@ public class accountController {
 
         // Validate the token
         if (tokenService.validTokenFromHeader(authorizationHeader)) {
-            compteService.createAccount(request.getIdentifiant(), request.getPassword());
+            String created = compteService.createAccount(tokenService.getTokenFromHeader(authorizationHeader),
+                    request.getIdentifiant(), request.getPassword(), request.getRole());
             Map<String, String> response = new HashMap<>();
-            response.put("message", "Account created successfully");
+            response.put("message", created);
             return new ResponseEntity<>(response, HttpStatus.OK);
         } else {
             // Invalid token
@@ -41,11 +44,23 @@ public class accountController {
         }
     }
 
-    @PostMapping("/token")
+    @PostMapping("/auth")
     public ResponseEntity<Map<String, String>> login(@RequestBody accountModel request) {
         Map<String, String> response = new HashMap<>();
-        response.put("token",
-                compteService.getAccountByLogs(request.getIdentifiant(), request.getPassword()).get().getToken());
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        HttpStatus status;
+        try {
+            Optional<accountModel> compte = compteService.getAccountByLogs(request.getIdentifiant(),
+                    request.getPassword());
+            response.put("identifiant", compte.get().getIdentifiant());
+            response.put("role", compte.get().getRole().toString());
+            response.put("token", compte.get().getToken());
+            response.put("message", "OK");
+            status = HttpStatus.OK;
+        } catch (Exception e) {
+            response.put("message", "Account not found");
+            status = HttpStatus.NOT_FOUND;
+        }
+
+        return new ResponseEntity<>(response, status);
     }
 }
