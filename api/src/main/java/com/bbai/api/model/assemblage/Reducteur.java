@@ -3,7 +3,6 @@ package com.bbai.api.model.assemblage;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
 @Entity
@@ -15,7 +14,4 @@ public class Reducteur {
 
     private String marque;
     private String numSerie;
-
-    //@ManyToOne
-    //private Assemblage assemblage;
 }

@@ -1,7 +1,5 @@
 package com.bbai.api.model.Account;
 
-import javax.management.relation.Role;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
