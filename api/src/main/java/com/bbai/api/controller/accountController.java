@@ -7,9 +7,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import com.bbai.api.model.accountModel;
-import com.bbai.api.service.accountService;
-import com.bbai.api.service.tokenValidatorService;
+
+import com.bbai.api.model.Account.accountModel;
+import com.bbai.api.service.Account.accountService;
+import com.bbai.api.service.Account.tokenValidatorService;
 
 import org.springframework.web.bind.annotation.*;
 

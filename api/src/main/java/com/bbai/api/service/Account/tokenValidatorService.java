@@ -1,4 +1,4 @@
-package com.bbai.api.service;
+package com.bbai.api.service.Account;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
-package com.bbai.api.service;
+package com.bbai.api.service.Account;
 
-import com.bbai.api.model.ERole;
-import com.bbai.api.model.accountModel;
+import com.bbai.api.model.Account.ERole;
+import com.bbai.api.model.Account.accountModel;
 import com.bbai.api.repository.AccountModelRepository;
 
 import lombok.AllArgsConstructor;

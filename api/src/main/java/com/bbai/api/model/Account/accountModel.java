@@ -1,4 +1,4 @@
-package com.bbai.api.model;
+package com.bbai.api.model.Account;
 
 import javax.management.relation.Role;
 
