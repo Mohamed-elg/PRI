@@ -8,7 +8,8 @@ import { AddMechanicalSheetComponent } from './add-mechanical-sheet/add-mechanic
 const routes: Routes = [
   { path: 'add-mechanical-sheet', component: AddMechanicalSheetComponent },
   { path: 'connection', component: ConnectionComponent },
-  { path: 'list-mechanical-sheets', component: ListMechanicalSheetsComponent }
+  { path: 'list-mechanical-sheets', component: ListMechanicalSheetsComponent },
+  { path: '',   redirectTo: '/connection', pathMatch: 'full' },
 ];
 
 @NgModule({
