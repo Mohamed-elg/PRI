@@ -12,18 +12,14 @@ export class AddMechanicalSheetComponent implements OnInit{
   constructor(private shareDataService: ShareDataService) {}
 
   ngOnInit(): void {
+    this.shareDataService.currentClientValue.subscribe(value => {
+      this.clientValue = value;
+    });
       
   }
-
-
-  test() {
-    this.shareDataService.currentClientValue.subscribe(
-      (value) => (this.clientValue = value)
-    );
   
-    alert(this.clientValue);
+  onSubmit() {
+    console.log(this.clientValue);
   }
-  
-  
 
 }

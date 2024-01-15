@@ -4,7 +4,7 @@
   
       <div class="form-group">
         <label for="client">Client</label>
-        <input type="text" class="form-control rounded" id="client" placeholder="Nom du client">
+        <input type="text" class="form-control rounded" id="client" placeholder="Nom du client" name="inputClient" [(ngModel)]="inputClient" (input)="updateClientValue()">
         
         <label for="numero">Numéro</label>
         <input type="text" class="form-control rounded" id="numero" placeholder="Numéro de série">
