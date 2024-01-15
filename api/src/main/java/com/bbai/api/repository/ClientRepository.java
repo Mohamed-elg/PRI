@@ -10,4 +10,6 @@ public interface ClientRepository extends JpaRepository<ClientModel, Long> {
 
     Optional<ClientModel> findByRef(String ref);
 
+    Optional<ClientModel> findByNom(String nom);
+
 }
