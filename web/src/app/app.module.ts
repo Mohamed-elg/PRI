@@ -17,6 +17,7 @@ import { MotorComponent } from './motor/motor.component';
 import { OtherEquipementComponent } from './other-equipement/other-equipement.component';
 import { DiagnosticComponent } from './diagnostic/diagnostic.component';
 import { ListMechanicalSheetsComponent } from './list-mechanical-sheets/list-mechanical-sheets.component';
+import { AddMechanicalSheetComponent } from './add-mechanical-sheet/add-mechanical-sheet.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ListMechanicalSheetsComponent } from './list-mechanical-sheets/list-mec
     MotorComponent,
     OtherEquipementComponent,
     DiagnosticComponent,
-    ListMechanicalSheetsComponent
+    ListMechanicalSheetsComponent,
+    AddMechanicalSheetComponent
   ],
   imports: [
     BrowserModule,

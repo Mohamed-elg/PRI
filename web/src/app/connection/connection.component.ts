@@ -29,6 +29,7 @@ export class ConnectionComponent implements OnInit {
       this.http.post('[api_endpoint]', formData).subscribe(
         (response) => {
           console.log('Login successful',response);
+          localStorage.setItem('authToken', response.authToken);
         },
         (error) => {
           console.error('Login failed', error);
