@@ -20,9 +20,23 @@ public class FicheMecaController {
     private tokenValidatorService tokenService;
 
     @PostMapping("/FicheMecanique")
-    public ResponseEntity<Object> postAssemblage(@RequestBody FicheMecaDTO ficheMecaDTO, @RequestHeader("Authorization") String authorizationHeader){
+    public ResponseEntity<Object> postFicheMeca(@RequestBody FicheMecaDTO ficheMecaDTO, @RequestHeader("Authorization") String authorizationHeader){
         try {
             return new ResponseEntity<>(ficheMecaService.saveFicheMeca(ficheMecaDTO,tokenService.getTokenFromHeader(authorizationHeader)), HttpStatus.ACCEPTED);
+        }catch(Exception e){
+            if(e instanceof AccessDeniedException){
+                return new ResponseEntity<>(e.toString(), HttpStatus.UNAUTHORIZED);
+            }else{
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+
+        }
+    }
+
+    @GetMapping("/FicheMecanique")
+    public ResponseEntity<Object> getFicheMeca(@RequestParam(required = false) Long id, @RequestHeader("Authorization") String authorizationHeader){
+        try{
+            return new ResponseEntity<>(ficheMecaService.getFicheMeca(id,tokenService.getTokenFromHeader(authorizationHeader)),HttpStatus.OK);
         }catch(Exception e){
             if(e instanceof AccessDeniedException){
                 return new ResponseEntity<>(e.toString(), HttpStatus.UNAUTHORIZED);

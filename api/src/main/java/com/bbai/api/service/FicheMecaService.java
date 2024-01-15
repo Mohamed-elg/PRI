@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.nio.file.AccessDeniedException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -32,5 +34,21 @@ public class FicheMecaService {
         ficheMeca.setModifiedBy(account.get().getIdentifiant());
         ficheMeca.setLastModification(LocalDate.now());
         return ficheMecaRepository.save(ficheMeca);
+    }
+
+    public List<FicheMeca> getFicheMeca(Long id, String token) throws AccessDeniedException {
+        Optional<accountModel> account = accountService.getAccountByToken(token);
+        if (account.isEmpty()) {
+            throw new AccessDeniedException("Access is forbidden: invalid token");
+        }
+
+        List<FicheMeca> ficheMecas = new ArrayList<>();
+        if(id != null){
+            Optional<FicheMeca> ficheMeca = ficheMecaRepository.findById(id);
+            ficheMeca.ifPresent(ficheMecas::add);
+        }else{
+            ficheMecas.addAll(ficheMecaRepository.findAll());
+        }
+        return ficheMecas;
     }
 }
