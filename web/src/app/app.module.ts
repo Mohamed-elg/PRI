@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +18,7 @@ import { MotorComponent } from './motor/motor.component';
 import { OtherEquipementComponent } from './other-equipement/other-equipement.component';
 import { DiagnosticComponent } from './diagnostic/diagnostic.component';
 import { ListMechanicalSheetsComponent } from './list-mechanical-sheets/list-mechanical-sheets.component';
+import { AddMechanicalSheetComponent } from './add-mechanical-sheet/add-mechanical-sheet.component';
 
 @NgModule({
   declarations: [
@@ -30,11 +34,15 @@ import { ListMechanicalSheetsComponent } from './list-mechanical-sheets/list-mec
     MotorComponent,
     OtherEquipementComponent,
     DiagnosticComponent,
-    ListMechanicalSheetsComponent
+    ListMechanicalSheetsComponent,
+    AddMechanicalSheetComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

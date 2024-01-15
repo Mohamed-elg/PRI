@@ -3,9 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { MechanicalSheetComponent } from './mechanical-sheet/mechanical-sheet.component';
 import { ConnectionComponent } from './connection/connection.component';
 import { ListMechanicalSheetsComponent } from './list-mechanical-sheets/list-mechanical-sheets.component';
+import { AddMechanicalSheetComponent } from './add-mechanical-sheet/add-mechanical-sheet.component';
 
 const routes: Routes = [
-  { path: 'mechanical-sheet', component: MechanicalSheetComponent },
+  { path: 'add-mechanical-sheet', component: AddMechanicalSheetComponent },
   { path: 'connection', component: ConnectionComponent },
   { path: 'list-mechanical-sheets', component: ListMechanicalSheetsComponent }
 ];

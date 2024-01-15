@@ -7,8 +7,6 @@ import com.bbai.api.repository.AccountModelRepository;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
