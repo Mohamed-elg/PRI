@@ -1,21 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { ShareDataService } from '../services/share-data-service.service';
 
+export class Client {
+  constructor(
+    public client: string = '',
+    public number: string = '',
+    public name: string = '',
+    public phone: string = '',
+    public date: string = '',
+    public ref: string = '',
+    public mail: string = ''
+  ) {}
+}
+
 @Component({
   selector: 'client',
   templateUrl: './client.component.html',
   styleUrls: ['./client.component.css']
 })
 export class ClientComponent implements OnInit{
-  inputClient: string ='';
+  client: Client = new Client();
 
   constructor(private sharedDataService: ShareDataService) { }
 
   ngOnInit(): void {
-    
   }
 
   updateClientValue(){
-    this.sharedDataService.updateClientValue(this.inputClient);
+    this.sharedDataService.updateClientValue(this.client);
   }
 }

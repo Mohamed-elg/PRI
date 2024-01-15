@@ -7,19 +7,19 @@ import { ShareDataService } from '../services/share-data-service.service';
   styleUrls: ['./add-mechanical-sheet.component.css']
 })
 export class AddMechanicalSheetComponent implements OnInit{
-  clientValue!: string;
+  client!: any;
 
   constructor(private shareDataService: ShareDataService) {}
 
   ngOnInit(): void {
     this.shareDataService.currentClientValue.subscribe(value => {
-      this.clientValue = value;
+      this.client = value;
     });
       
   }
   
   onSubmit() {
-    console.log(this.clientValue);
+    console.log(this.client);
   }
 
 }
