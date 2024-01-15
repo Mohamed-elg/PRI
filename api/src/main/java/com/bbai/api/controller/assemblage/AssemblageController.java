@@ -1,8 +1,6 @@
 package com.bbai.api.controller.assemblage;
 
 import com.bbai.api.model.assemblage.Assemblage;
-import com.bbai.api.repository.assemblage.AssemblageRepository;
-import com.bbai.api.service.Account.accountService;
 import com.bbai.api.service.Account.tokenValidatorService;
 import com.bbai.api.service.assemblage.AssemblageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +20,16 @@ public class AssemblageController {
     private tokenValidatorService tokenService;
 
     @PostMapping("/assemblage")
-    public ResponseEntity<Object> postAssemblage(@RequestBody Assemblage assemblage, @RequestHeader("Authorization") String authorizationHeader){
+    public ResponseEntity<Object> postAssemblage(@RequestBody Assemblage assemblage,
+            @RequestHeader("Authorization") String authorizationHeader) {
         try {
-            return new ResponseEntity<>(assemblageService.saveAssemblage(assemblage,tokenService.getTokenFromHeader(authorizationHeader)), HttpStatus.ACCEPTED);
-        }catch(Exception e){
-            if(e instanceof AccessDeniedException){
+            return new ResponseEntity<>(
+                    assemblageService.saveAssemblage(assemblage, tokenService.getTokenFromHeader(authorizationHeader)),
+                    HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            if (e instanceof AccessDeniedException) {
                 return new ResponseEntity<>(e.toString(), HttpStatus.UNAUTHORIZED);
-            }else{
+            } else {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
 

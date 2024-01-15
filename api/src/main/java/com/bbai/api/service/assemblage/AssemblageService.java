@@ -1,12 +1,10 @@
 package com.bbai.api.service.assemblage;
 
-import com.bbai.api.model.Account.accountModel;
 import com.bbai.api.model.assemblage.Assemblage;
 import com.bbai.api.repository.assemblage.AssemblageRepository;
 import com.bbai.api.service.Account.accountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestHeader;
 
 import java.nio.file.AccessDeniedException;
 
@@ -18,7 +16,6 @@ public class AssemblageService {
     @Autowired
     accountService accountService;
 
-
     public Assemblage saveAssemblage(Assemblage assemblage, String token) throws AccessDeniedException {
 
         if (accountService.getAccountByToken(token).isEmpty()) {
@@ -27,6 +24,5 @@ public class AssemblageService {
 
         return assemblageRepository.save(assemblage);
     }
-
 
 }
