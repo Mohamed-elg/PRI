@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { AuthService } from '../services/auth.service';
+
 interface LoginResponse {
   role: string;
   identifiant: string;
@@ -20,7 +22,7 @@ export class ConnectionComponent implements OnInit {
 
   login_url = 'http://localhost:8081/api/account/auth';
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) { }
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
       this.loginForm = this.fb.group({
@@ -33,17 +35,14 @@ export class ConnectionComponent implements OnInit {
     if(this.loginForm.valid) {
       const formData = this.loginForm.value;
 
-      this.http.post<LoginResponse>(this.login_url, formData).subscribe(
+      this.authService.login(formData).subscribe(
         (response) => {
-          //console.log('Login successful',response);
-          localStorage.setItem('authToken', response.token);
-          localStorage.setItem('userRole', response.role);
           this.router.navigate(['/add-mechanical-sheet']);
         },
         (error) => {
           console.error('Login failed', error);
         }
-      );
+      )
     }
   }
 
