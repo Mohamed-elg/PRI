@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+interface LoginResponse {
+  role: string;
+  identifiant: string;
+  message: string;
+  token: string;
+}
 
 @Component({
   selector: 'connection',
@@ -10,12 +18,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ConnectionComponent implements OnInit {
   loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) { }
+  login_url = 'http://localhost:8081/api/account/auth';
+
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
       this.loginForm = this.fb.group({
-        inputId:   ['', Validators.required],
-        inputPassword: ['', Validators.required]
+        identifiant:   ['', Validators.required],
+        password: ['', Validators.required]
       });
   }
 
@@ -23,19 +33,17 @@ export class ConnectionComponent implements OnInit {
     if(this.loginForm.valid) {
       const formData = this.loginForm.value;
 
-      console.log(formData);
-
-      /*
-      this.http.post('[api_endpoint]', formData).subscribe(
+      this.http.post<LoginResponse>(this.login_url, formData).subscribe(
         (response) => {
-          console.log('Login successful',response);
-          localStorage.setItem('authToken', response.authToken);
+          //console.log('Login successful',response);
+          localStorage.setItem('authToken', response.token);
+          localStorage.setItem('userRole', response.role);
+          this.router.navigate(['/add-mechanical-sheet']);
         },
         (error) => {
           console.error('Login failed', error);
         }
       );
-      */
     }
   }
 
