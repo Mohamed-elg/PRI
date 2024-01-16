@@ -12,13 +12,24 @@ export class ShareDataService {
   private clientValueSource = new BehaviorSubject<Client>(this.defaultClient);
   currentClientValue = this.clientValueSource.asObservable();
 
+  private equipmentsValuesSource = new BehaviorSubject(null);
+  currentEquipmentsValues = this.equipmentsValuesSource.asObservable();
+
   constructor() { }
 
   updateClientValue(value: Client) {
     this.clientValueSource.next(value);
   }
 
-  getClientValue(){
+  getClientValue() {
     return this.clientValueSource.getValue();
+  }
+
+  updateEquipmentsValues(value: any) {
+    this.equipmentsValuesSource.next(value);
+  }
+
+  getEquipmentsValues() {
+    return this.equipmentsValuesSource.getValue();
   }
 }

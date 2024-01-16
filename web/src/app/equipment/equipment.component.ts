@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
+import { ShareDataService } from '../services/share-data-service.service';
 
 interface Container {
   showOptionInput: boolean;
-  details: string[];
   equipements: string[];
   selectedEquipement: string;
   selectedDetail: string;
@@ -19,14 +19,13 @@ interface Container {
 export class EquipementComponent {
   containers: Container[] = [];
 
-  constructor() {
+  constructor(private shareDataService: ShareDataService) {
     this.addContainer();
   }
 
   addContainer() {
     const newContainer: Container = {
       showOptionInput: false,
-      details: ['Moteur synchrone', 'Moteur asynchrone', 'Moteur courant continu', 'Moteur SERVO', 'Pompe centrifuge', 'Pompe à vide'],
       equipements: ['Moteur', 'Réducteur', 'Pompe', 'Ventilateur', 'Soufflante'],
       selectedEquipement: '',
       selectedDetail: '',
@@ -50,9 +49,9 @@ export class EquipementComponent {
   updateVisibleDetails(container: Container) {
     container.visibleDetails = [];
     if (container.selectedEquipement === 'Moteur') {
-      container.visibleDetails.push('Moteur synchrone', 'Moteur asynchrone', 'Moteur courant continu', '+');
+      container.visibleDetails.push('Synchrone', 'Asynchrone', 'Courant continu','SERVO', '+');
     } else if (container.selectedEquipement === 'Pompe') {
-      container.visibleDetails.push('Pompe centrifuge', 'Pompe à vide', '+');
+      container.visibleDetails.push('Centrifuge', 'A vide', '+');
     } else {
       container.visibleDetails.push('+');
     }
@@ -75,4 +74,12 @@ export class EquipementComponent {
     return container.visibleDetails.includes(detail);
   }
 
+  updateEquipmentsValues() {
+    const selectedValues = this.containers.map(container => ({
+      selectedEquipement: container.selectedEquipement,
+      selectedDetail: container.selectedDetail || container.newDetail,
+    }));
+
+    this.shareDataService.updateEquipmentsValues(selectedValues);
+  }
 }

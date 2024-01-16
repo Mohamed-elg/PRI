@@ -49,6 +49,7 @@ export class ApiPayload {
 })
 export class AddMechanicalSheetComponent implements OnInit{
   client!: any;
+  equipments!: any;
   mechanical_sheet_url = 'http://localhost:8081/api/FicheMecanique';
 
   constructor(private shareDataService: ShareDataService, private http: HttpClient) {}
@@ -57,10 +58,14 @@ export class AddMechanicalSheetComponent implements OnInit{
     this.shareDataService.currentClientValue.subscribe(value => {
       this.client = value;
     });
-      
+    this.shareDataService.currentEquipmentsValues.subscribe(value => {
+      this.equipments = value;
+    });  
   }
   
   onSubmit() {
+    console.log(this.equipments);
+
     const payload = {
       "client": {
         "id": 0,
@@ -75,40 +80,26 @@ export class AddMechanicalSheetComponent implements OnInit{
       },
       "assemblage": {
         "id": 0,
-        "moteurs": [
-          {
-            "marque": "",
-            "numSerie": "",
-            "typeMoteur": "",
-            "id": 0
-          }
-        ],
-        "pompes": [
-          {
-            "id": 0,
-            "marque": "",
-            "numSerie": ""
-          }
-        ],
-        "reducteurs": [
-          {
-            "id": 0,
-            "marque": "",
-            "numSerie": ""
-          }
-        ],
-        "ventilateurs": [
-          {
-            "id": 0,
-            "marque": "",
-            "numSerie": ""
-          }
-        ]
+        "moteurs": [],
+        "pompes": [],
+        "reducteurs": [],
+        "ventilateurs": []
       }
     }
-  
+
+    this.equipments.forEach((equipment: any) => {
+      const equipmentType = equipment.selectedEquipement.toLowerCase();
+      const equipmentDetail = equipment.selectedDetail.toLowerCase();
+
+      const newEquipment = {
+        "type" : equipmentDetail,
+      };
+
+      (payload.assemblage as any)[equipmentType+'s'].push(newEquipment);
+
+    });
+
     const payloadString = JSON.stringify(payload);
-    console.log('Payload:', payloadString);
 
     const authToken = localStorage.getItem('authToken');
 

@@ -8,7 +8,7 @@
           </button>
           <ul class="dropdown-menu">
             <li *ngFor="let equipement of container.equipements">
-              <a class="dropdown-item" (click)="onEquipementSelect(container, equipement)">{{ equipement }}</a>
+              <a class="dropdown-item" (click)="onEquipementSelect(container, equipement)" >{{ equipement }}</a>
             </li>
           </ul>
         </div>
@@ -22,13 +22,13 @@
               </button>
               <ul class="dropdown-menu">
                 <li *ngFor="let detail of container.visibleDetails">
-                  <a *ngIf="!isDetailVisible(container,'Autre')" class="dropdown-item" (click)="onDetailSelect(container,detail)">{{ detail }}</a>
+                  <a *ngIf="!isDetailVisible(container,'Autre')" class="dropdown-item" (click)="onDetailSelect(container,detail)" (click)="updateEquipmentsValues()">{{ detail }}</a>
                 </li>
               </ul>
             </div>
           </div>
           <div class="col">
-            <input *ngIf="container.showOptionInput" type="text" class="form-control rounded" id="autreOption" [(ngModel)]="container.newDetail" placeholder="Nouveau Détail">
+            <input *ngIf="container.showOptionInput" type="text" class="form-control rounded" id="autreOption" name="inputDetail" [(ngModel)]="container.newDetail" placeholder="Nouveau Détail" (input)="updateEquipmentsValues()">
           </div>
         </div>
       </div>
