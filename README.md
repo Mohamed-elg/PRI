@@ -1,12 +1,20 @@
 # PRI
 
+## Code source
+
+https://github.com/Mohamed-elg/PRI
+
 ## Choix Techniques
 
-**Base de données** : Postgre --> port
+**Base de données** :
+Postgre
 
-**Api Backend** : Java SpringBoot --> port 8081 /api/apidocs
+**Api Backend** :
+Java SpringBoot --> http://localhost:8081/api/
+Documentation --> http://localhost:8081/api/apidocs
 
-**FrontEnd** : Angular --> port 8082
+**FrontEnd** :
+Angular --> http://localhost
 
 ## Lancement
 
