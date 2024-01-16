@@ -9,16 +9,18 @@ interface LoginResponse {
   token: string;
 }
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private readonly loginUrl = 'http://localhost:8081/api/account/auth';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  login(credentials: {identidiant: string; pasword:string }): Observable<LoginResponse> {
+  login(credentials: {
+    identidiant: string;
+    pasword: string;
+  }): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(this.loginUrl, credentials).pipe(
       tap((response: LoginResponse) => {
         this.setAuth(response);
@@ -27,7 +29,7 @@ export class AuthService {
         console.error('Login failed', error);
         throw error;
       })
-    )
+    );
   }
 
   private setAuth(response: LoginResponse): void {
@@ -44,4 +46,7 @@ export class AuthService {
     return !!localStorage.getItem('authToken');
   }
 
+  isAdmin(): boolean {
+    return localStorage.getItem('userRole') == 'ADMIN';
+  }
 }

@@ -1,0 +1,29 @@
+<form class="row g-3" [formGroup]="registerForm">
+    <div class="col-md-6">
+        <label for="inputId" class="form-label">Identifiant</label>
+        <input type="text" class="form-control" id="inputId" formControlName="identifiant">
+    </div>
+    <div class="col-md-6">
+        <label for="inputPassword" class="form-label">Mot de passe</label>
+        <input type="password" class="form-control" id="inputPassword" formControlName="password">
+    </div>
+    <div class="col-md-6">
+        <label for="inputPasswordRepeat" class="form-label">Répéter le mot de passe</label>
+        <input type="password" class="form-control" id="inputPasswordRepeat" formControlName="password_repeat">
+        <div *ngIf="registerForm.get('password_repeat')?.hasError('passwordsNotMatch')">Les mots de passe ne sont pas
+            identiques</div>
+    </div>
+    <div class="col-md-6" id="select">
+        <label for="role" class="form-label">Rôle</label>
+        <select id="role" formControlName="selectedRole">
+            <option value="USER" selected>Utilisateur</option>
+            <option value="MANAGER">Manager</option>
+            <option value="ADMIN">Administrateur</option>
+        </select>
+    </div>
+
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()" [disabled]="!registerForm.valid">Création du
+            compte</button>
+    </div>
+</form>

@@ -14,6 +14,7 @@ import { EquipementComponent } from './equipment/equipment.component';
 import { OtherEquipementComponent } from './other-equipement/other-equipement.component';
 import { ListMechanicalSheetsComponent } from './list-mechanical-sheets/list-mechanical-sheets.component';
 import { AddMechanicalSheetComponent } from './add-mechanical-sheet/add-mechanical-sheet.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AddMechanicalSheetComponent } from './add-mechanical-sheet/add-mechanic
     EquipementComponent,
     OtherEquipementComponent,
     ListMechanicalSheetsComponent,
-    AddMechanicalSheetComponent
+    AddMechanicalSheetComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

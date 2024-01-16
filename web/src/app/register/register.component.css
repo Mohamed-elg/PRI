@@ -1,0 +1,37 @@
+form {
+  margin: 15%;
+}
+
+button {
+  background-color: #012061;
+  border-color: #012061;
+}
+
+button:hover {
+  background-color: #000c25;
+  border-color: #000c25;
+}
+
+button:active {
+  background-color: #000c25 !important;
+  border-color: #000c25 !important;
+}
+
+#select {
+  display: grid;
+}
+
+select {
+  width: 140px;
+  height: 35px;
+  padding: 4px;
+  border-radius: 4px;
+  background: rgb(230, 230, 230);
+  border: none;
+  outline: none;
+  display: inline-block;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}

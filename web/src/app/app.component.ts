@@ -5,18 +5,20 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'web';
-
   constructor(private authService: AuthService, private router: Router) {}
 
   isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
   }
 
-  logout(){
+  isAdmin(): boolean {
+    return this.authService.isAdmin();
+  }
+
+  logout() {
     this.authService.logout();
   }
 }
