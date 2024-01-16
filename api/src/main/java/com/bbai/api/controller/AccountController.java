@@ -39,7 +39,7 @@ public class AccountController {
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
             if (e instanceof DataIntegrityViolationException) {
-                response.put("message", e.toString());
+                response.put("message", e.getMessage().toString());
                 return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
             } else {
                 if (e instanceof AccessDeniedException) {
@@ -55,7 +55,6 @@ public class AccountController {
     @PostMapping("/auth")
     public ResponseEntity<Map<String, String>> login(@RequestBody AccountModel request) {
         Map<String, String> response = new HashMap<>();
-        HttpStatus status;
         try {
             Optional<AccountModel> compte = compteService.getAccountByLogs(request.getIdentifiant(),
                     request.getPassword());
@@ -63,12 +62,18 @@ public class AccountController {
             response.put("role", compte.get().getRole().toString());
             response.put("token", compte.get().getToken());
             response.put("message", "OK");
-            status = HttpStatus.OK;
+            return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
-            response.put("message", "Account not found");
-            status = HttpStatus.NOT_FOUND;
+
+            if (e instanceof AccessDeniedException) {
+                response.put("message", e.getMessage().toString());
+                return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+            } else {
+                response.put("message", e.getMessage().toString());
+                return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+
         }
 
-        return new ResponseEntity<>(response, status);
     }
 }

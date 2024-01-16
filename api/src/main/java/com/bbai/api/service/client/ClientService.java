@@ -1,11 +1,11 @@
 package com.bbai.api.service.client;
 
+import java.nio.file.AccessDeniedException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bbai.api.model.account.ERole;
 import com.bbai.api.model.client.ClientModel;
 import com.bbai.api.repository.ClientRepository;
 import com.bbai.api.service.account.AccountService;
@@ -26,6 +26,11 @@ public class ClientService {
         return clientRepository.findById(ClientId);
     }
 
+    public void deleteClientbyId(String token, long ClientId) {
+        ClientModel client = clientRepository.findById(ClientId).get();
+        clientRepository.delete(client);
+    }
+
     public Optional<ClientModel> getClientbyRef(String token, String ClientRef) {
         return clientRepository.findByRef(ClientRef);
     }
@@ -34,22 +39,25 @@ public class ClientService {
         return clientRepository.findByNom(ClientNom);
     }
 
-    public ClientModel updateClientbyId(String token, long ClientId, ClientModel client) {
-        Optional<ClientModel> old_client = clientRepository.findById(ClientId);
-        if (old_client.isPresent()) {
-            client.setId(old_client.get().getId());
-            clientRepository.save(client);
-            return client;
+    public ClientModel updateClientbyId(String token, long ClientId, ClientModel client) throws AccessDeniedException {
+        if (accountService.getAccountByToken(token).isPresent()) {
+            Optional<ClientModel> old_client = clientRepository.findById(ClientId);
+            if (old_client.isPresent()) {
+                client.setId(old_client.get().getId());
+                clientRepository.save(client);
+                return client;
+            }
+            return old_client.get();
+        } else {
+            throw new AccessDeniedException("Access is forbidden: invalid token");
         }
-        return old_client.get();
     }
 
-    public ClientModel createClient(String token, ClientModel client) {
-        ERole temp = accountService.getAccountByToken(token).get().getRole();
-        if (temp == ERole.USER || temp == ERole.MANAGER || temp == ERole.ADMIN) {
+    public ClientModel createClient(String token, ClientModel client) throws AccessDeniedException {
+        if (accountService.getAccountByToken(token).isPresent()) {
             return clientRepository.save(client);
         } else {
-            return null;
+            throw new AccessDeniedException("Access is forbidden: invalid token");
         }
     }
 
