@@ -12,11 +12,11 @@ interface Container {
 }
 
 @Component({
-  selector: 'motor',
-  templateUrl: './motor.component.html',
-  styleUrls: ['./motor.component.css']
+  selector: 'equipment',
+  templateUrl: './equipment.component.html',
+  styleUrls: ['./equipment.component.css']
 })
-export class MotorComponent {
+export class EquipementComponent {
   containers: Container[] = [];
 
   constructor() {

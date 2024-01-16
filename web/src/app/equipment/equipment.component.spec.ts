@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MotorComponent } from './motor.component';
+import { MotorComponent } from './equipment.component';
 
 describe('MotorComponent', () => {
   let component: MotorComponent;
