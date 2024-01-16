@@ -1,34 +1,29 @@
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Numéro</th>
-        <th scope="col">Client</th>
-        <th scope="col">Date</th>
-        <th scope="col">Produits</th>
-        <th scope="col">Opérateur</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr data-href="#">
-        <th scope="row">1</th>
-        <td>Client 1</td>
-        <td>01/01/2023</td>
-        <td>Moteur</td>
-        <td>Opérateur 1</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Client 2</td>
-        <td>02/02/2023</td>
-        <td>Pompe</td>
-        <td>Opérateur 2</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Client 3</td>
-        <td>03/03/2023</td>
-        <td>Moteur, Réducteur</td>
-        <td>Opérateur 3</td>
-      </tr>
-    </tbody>
-</table>
+<div class="list-group">
+  <a class="list-group-item fixed-header">
+    <div class="row title">
+      <div class="col">Numéro</div>
+      <div class="col">Client</div>
+      <div class="col">Date</div>
+      <div class="col">Produits</div>
+    </div>
+  </a>
+</div>
+
+<div class="list-group list-group-container" *ngFor="let sheet of list_sheets">
+  <a href="#" class="list-group-item list-group-item-action">
+    <div class="row">
+      <div class="col">{{ sheet.id }}</div>
+      <div class="col">{{ sheet.client?.nom || 'N/A' }}</div>
+      <div class="col">{{ sheet.dateCreation }}</div>
+      <div class="col">
+        <ng-container *ngIf="sheet.assemblage">
+          <p *ngFor="let moteur of sheet.assemblage.moteurs">Moteur {{ moteur.type }}</p>
+          <p *ngFor="let pompe of sheet.assemblage.pompes">Pompe {{ pompe.type }}</p>
+          <p *ngFor="let reducteur of sheet.assemblage.reducteurs">Réducteur {{ reducteur.type }}</p>
+          <p *ngFor="let ventilateur of sheet.assemblage.ventilateurs">Ventilateur {{ ventilateur.type }}</p>
+        </ng-container>
+        <ng-container *ngIf="!sheet.assemblage || (sheet.assemblage.moteurs.length === 0 && sheet.assemblage.pompes.length === 0 && sheet.assemblage.reducteurs.length === 0 && sheet.assemblage.ventilateurs.length === 0)">N/A</ng-container>
+      </div>
+    </div>
+  </a>
+</div>
