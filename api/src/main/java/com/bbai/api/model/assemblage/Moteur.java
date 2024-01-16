@@ -11,9 +11,6 @@ public class Moteur {
     private long Id;
     private String marque;
     private String numSerie;
-    @Enumerated(EnumType.STRING)
-    private EtypeMoteur typeMoteur;
+    private String typeMoteur;
 
-    //@ManyToOne
-    //private Assemblage assemblage;
 }
