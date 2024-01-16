@@ -34,6 +34,16 @@ public class ClientService {
         return clientRepository.findByNom(ClientNom);
     }
 
+    public ClientModel updateClientbyId(String token, long ClientId, ClientModel client) {
+        Optional<ClientModel> old_client = clientRepository.findById(ClientId);
+        if (old_client.isPresent()) {
+            client.setId(old_client.get().getId());
+            clientRepository.save(client);
+            return client;
+        }
+        return old_client.get();
+    }
+
     public ClientModel createClient(String token, ClientModel client) {
         ERole temp = accountService.getAccountByToken(token).get().getRole();
         if (temp == ERole.USER || temp == ERole.MANAGER || temp == ERole.ADMIN) {
