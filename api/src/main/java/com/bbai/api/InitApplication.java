@@ -1,5 +1,7 @@
 package com.bbai.api;
 
+import com.bbai.api.model.Option;
+import com.bbai.api.repository.OptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -9,11 +11,17 @@ import com.bbai.api.model.account.AccountModel;
 import com.bbai.api.model.account.ERole;
 import com.bbai.api.repository.AccountModelRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class InitApplication implements ApplicationRunner {
 
     @Autowired
     private AccountModelRepository accountRepository;
+
+    @Autowired
+    private OptionRepository optionRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -28,6 +36,22 @@ public class InitApplication implements ApplicationRunner {
             this.accountRepository.save(root);
         } catch (Exception DataIntegrityViolationException) {
             System.out.println("Init user already exists !");
+        }
+
+        try{
+            List<Option> options = new ArrayList<>();
+            options.add(new Option("Codeur"));
+            options.add(new Option("Dynamo"));
+            options.add(new Option("VF"));
+            options.add(new Option("Frein"));
+            options.add(new Option("Sondes"));
+            options.add(new Option("Accouplement"));
+            options.add(new Option("Poulie"));
+            options.add(new Option("Pignon"));
+
+            optionRepository.saveAll(options);
+        }catch(Exception DataIntegrityViolationException){
+            System.out.println("Base options already exist !");
         }
 
     }
