@@ -1,5 +1,6 @@
 package com.bbai.api.controller;
 
+import java.nio.file.AccessDeniedException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -30,28 +31,24 @@ public class AccountController {
             @RequestHeader("Authorization") String authorizationHeader,
             @RequestBody AccountModel request) {
 
-        // Validate the token
-        if (tokenService.validTokenFromHeader(authorizationHeader)) {
-            Map<String, String> response = new HashMap<>();
-            try {
-                String created = compteService.createAccount(tokenService.getTokenFromHeader(authorizationHeader),
-                        request.getIdentifiant(), request.getPassword(), request.getRole());
-                response.put("message", created);
-                return new ResponseEntity<>(response, HttpStatus.OK);
-            } catch (Exception e) {
-                if (e instanceof DataIntegrityViolationException) {
-                    response.put("message", e.toString());
+        Map<String, String> response = new HashMap<>();
+        try {
+            String created = compteService.createAccount(tokenService.getTokenFromHeader(authorizationHeader),
+                    request.getIdentifiant(), request.getPassword(), request.getRole());
+            response.put("message", created);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (Exception e) {
+            if (e instanceof DataIntegrityViolationException) {
+                response.put("message", e.toString());
+                return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+            } else {
+                if (e instanceof AccessDeniedException) {
+                    response.put("message", e.getMessage().toString());
                     return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
                 } else {
                     return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
                 }
-
             }
-        } else {
-            // Invalid token
-            Map<String, String> response = new HashMap<>();
-            response.put("message", "Invalid token");
-            return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
         }
     }
 
