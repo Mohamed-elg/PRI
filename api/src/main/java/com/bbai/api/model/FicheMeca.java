@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data
@@ -23,6 +24,9 @@ public class FicheMeca {
 
     @OneToOne(cascade = CascadeType.ALL)
     private Assemblage assemblage;
+
+    @ManyToMany
+    private List<Option> options;
 
     @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate dateCreation;
