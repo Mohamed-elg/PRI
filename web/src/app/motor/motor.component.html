@@ -1,14 +1,14 @@
-<div class="container">
+<div class="container" *ngFor="let container of containers">
   <form class="form-group">
     <div class="row">
       <div class="col">
         <div class="dropdown">
           <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            {{ selectedEquipement || 'Équipement' }}
+            {{ container.selectedEquipement || 'Équipement' }}
           </button>
           <ul class="dropdown-menu">
-            <li *ngFor="let equipement of equipements">
-              <a class="dropdown-item" (click)="onEquipementSelect(equipement)">{{ equipement }}</a>
+            <li *ngFor="let equipement of container.equipements">
+              <a class="dropdown-item" (click)="onEquipementSelect(container, equipement)">{{ equipement }}</a>
             </li>
           </ul>
         </div>
@@ -18,17 +18,17 @@
           <div class="col">
             <div class="dropdown">
               <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                {{ selectedDetail || 'Détail' }}
+                {{ container.selectedDetail || 'Détail' }}
               </button>
               <ul class="dropdown-menu">
-                <li *ngFor="let detail of visibleDetails">
-                  <a *ngIf="!isDetailVisible('Autre')" class="dropdown-item" (click)="onDetailSelect(detail)">{{ detail }}</a>
+                <li *ngFor="let detail of container.visibleDetails">
+                  <a *ngIf="!isDetailVisible(container,'Autre')" class="dropdown-item" (click)="onDetailSelect(container,detail)">{{ detail }}</a>
                 </li>
               </ul>
             </div>
           </div>
           <div class="col">
-            <input *ngIf="showOptionInput" type="text" class="form-control rounded" id="autreOption" [(ngModel)]="newDetail" placeholder="Nouveau Détail">
+            <input *ngIf="container.showOptionInput" type="text" class="form-control rounded" id="autreOption" [(ngModel)]="container.newDetail" placeholder="Nouveau Détail">
           </div>
         </div>
       </div>

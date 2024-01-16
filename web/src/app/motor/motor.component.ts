@@ -1,60 +1,78 @@
 import { Component } from '@angular/core';
 
+interface Container {
+  showOptionInput: boolean;
+  details: string[];
+  equipements: string[];
+  selectedEquipement: string;
+  selectedDetail: string;
+  visibleDetails: string[];
+  newEquipment: string;
+  newDetail: string;
+}
+
 @Component({
   selector: 'motor',
   templateUrl: './motor.component.html',
   styleUrls: ['./motor.component.css']
 })
 export class MotorComponent {
-  showOptionInput: boolean = false;
-  details: string[] = [
-    'Moteur synchrone',
-    'Moteur asynchrone',
-    'Moteur courant continu',
-    'Moteur SERVO',
-    'Pompe centrifuge',
-    'Pompe à vide'
-  ];
+  containers: Container[] = [];
 
-  equipements: string[] = ['Moteur', 'Réducteur', 'Pompe', 'Ventilateur', 'Soufflante'];
-
-  selectedEquipement: string = '';
-  selectedDetail: string = '';
-  visibleDetails: string[] = [];
-  newEquipment: string = '';
-  newDetail: string = '';
-
-  onEquipementSelect(equipement: string) {
-    this.selectedEquipement = equipement;
-    this.updateVisibleDetails();
+  constructor() {
+    this.addContainer();
   }
 
-  updateVisibleDetails() {
-    this.visibleDetails = [];
-    if (this.selectedEquipement === 'Moteur') {
-      this.visibleDetails.push('Moteur synchrone', 'Moteur asynchrone', 'Moteur courant continu', '+');
-    } else if (this.selectedEquipement === 'Pompe') {
-      this.visibleDetails.push('Pompe centrifuge', 'Pompe à vide', '+');
-    }
-    else
-    this.visibleDetails.push('+');
+  addContainer() {
+    const newContainer: Container = {
+      showOptionInput: false,
+      details: ['Moteur synchrone', 'Moteur asynchrone', 'Moteur courant continu', 'Moteur SERVO', 'Pompe centrifuge', 'Pompe à vide'],
+      equipements: ['Moteur', 'Réducteur', 'Pompe', 'Ventilateur', 'Soufflante'],
+      selectedEquipement: '',
+      selectedDetail: '',
+      visibleDetails: [],
+      newEquipment: '',
+      newDetail: ''
+    };
+
+    this.containers.push(newContainer);
+    this.selectContainer(newContainer);
   }
 
-  onDetailSelect(detail: string) {
-    if (detail === '+') {
-      this.showOptionInput = true;
-      this.selectedDetail = this.newDetail;
+  selectContainer(container: Container) {
+  }
+
+  onEquipementSelect(container: Container, equipement: string) {
+    container.selectedEquipement = equipement;
+    this.updateVisibleDetails(container);
+  }
+
+  updateVisibleDetails(container: Container) {
+    container.visibleDetails = [];
+    if (container.selectedEquipement === 'Moteur') {
+      container.visibleDetails.push('Moteur synchrone', 'Moteur asynchrone', 'Moteur courant continu', '+');
+    } else if (container.selectedEquipement === 'Pompe') {
+      container.visibleDetails.push('Pompe centrifuge', 'Pompe à vide', '+');
     } else {
-      this.selectedDetail = detail;
+      container.visibleDetails.push('+');
+    }
+  }
+
+  onDetailSelect(container: Container, detail: string) {
+    if (detail === '+') {
+      container.showOptionInput = true;
+      container.selectedDetail = container.newDetail;
+    } else {
+      container.selectedDetail = detail;
     }
   }
 
   onAddOptionClick() {
-    console.log('Autre option spécifiée :');
+    this.addContainer();
   }
 
-  isDetailVisible(detail: string): boolean {
-    return this.visibleDetails.includes(detail);
+  isDetailVisible(container: Container, detail: string): boolean {
+    return container.visibleDetails.includes(detail);
   }
 
 }
