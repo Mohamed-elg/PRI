@@ -1,16 +1,15 @@
-FROM node:16
+FROM node:21-alpine3.18
 
-WORKDIR /web
+WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install -g @angular/cli@latest
 RUN npm install
 
 COPY . .
 
-RUN ng build --prod
+RUN npm run build
 
-EXPOSE 80
+EXPOSE 8082
 
-CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "80"]
+CMD ["node", "."]

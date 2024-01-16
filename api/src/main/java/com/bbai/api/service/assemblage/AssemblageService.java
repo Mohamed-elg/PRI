@@ -2,7 +2,8 @@ package com.bbai.api.service.assemblage;
 
 import com.bbai.api.model.assemblage.Assemblage;
 import com.bbai.api.repository.assemblage.AssemblageRepository;
-import com.bbai.api.service.Account.accountService;
+import com.bbai.api.service.account.AccountService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ public class AssemblageService {
     AssemblageRepository assemblageRepository;
 
     @Autowired
-    accountService accountService;
+    AccountService accountService;
 
     public Assemblage saveAssemblage(Assemblage assemblage, String token) throws AccessDeniedException {
 

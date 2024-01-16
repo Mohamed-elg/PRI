@@ -1,4 +1,4 @@
-package com.bbai.api.model.Client;
+package com.bbai.api.model.client;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
