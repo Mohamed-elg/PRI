@@ -1,5 +1,8 @@
 package com.bbai.api.service.account;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,10 +22,14 @@ public class TokenValidatorService {
 
     public String getTokenFromHeader(String authorizationHeader) {
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-            return authorizationHeader.substring(7);
-            // Extract token after "Bearer "
-            // TODO : DO BETTER !
+            Pattern pattern = Pattern.compile("Bearer (.*)");
+            Matcher matcher = pattern.matcher(authorizationHeader);
+
+            if (matcher.find()) {
+                return matcher.group(1);
+            }
         }
         return null;
     }
+
 }

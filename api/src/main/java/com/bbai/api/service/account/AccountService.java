@@ -7,6 +7,7 @@ import com.bbai.api.repository.AccountModelRepository;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import java.nio.file.AccessDeniedException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,18 +33,24 @@ public class AccountService {
         return accountModelRepository.findByToken(token);
     }
 
-    public String createAccount(String Usertoken, String identifiant, String password, ERole role) {
-        if (this.getAccountByToken(Usertoken).get().getRole() == ERole.ADMIN) {
-            AccountModel newAccount = new AccountModel();
-            newAccount.setIdentifiant(identifiant);
-            newAccount.setPassword(password);
-            newAccount.setRole(role);
-            Integer stringHash = (identifiant + password + role.toString()).hashCode();
-            newAccount.setToken(stringHash.toString());
-            accountModelRepository.save(newAccount);
-            return "Account created successfully";
+    public String createAccount(String Usertoken, String identifiant, String password, ERole role)
+            throws AccessDeniedException {
+        if (this.getAccountByToken(Usertoken).isPresent()) {
+            if (this.getAccountByToken(Usertoken).get().getRole() == ERole.ADMIN) {
+                AccountModel newAccount = new AccountModel();
+                newAccount.setIdentifiant(identifiant);
+                newAccount.setPassword(password);
+                newAccount.setRole(role);
+                Integer stringHash = (identifiant + password + role.toString()).hashCode();
+                newAccount.setToken(stringHash.toString());
+                accountModelRepository.save(newAccount);
+                return "Account created successfully";
+            }
+            throw new AccessDeniedException("Access is forbidden: you are not ADMIN");
+        } else {
+            throw new AccessDeniedException("Access is forbidden: invalid token");
         }
-        return "You are not ADMIN";
+
     }
 
 }
