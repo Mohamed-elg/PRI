@@ -1,8 +1,8 @@
 package com.bbai.api.service;
 
 import com.bbai.api.dto.FicheMecaDTO;
-import com.bbai.api.model.Account.accountModel;
 import com.bbai.api.model.FicheMeca;
+import com.bbai.api.model.account.AccountModel;
 import com.bbai.api.repository.FicheMecaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,10 +19,10 @@ public class FicheMecaService {
     FicheMecaRepository ficheMecaRepository;
 
     @Autowired
-    com.bbai.api.service.Account.accountService accountService;
+    com.bbai.api.service.account.AccountService accountService;
 
     public FicheMeca saveFicheMeca(FicheMecaDTO ficheMecaDTO, String token) throws AccessDeniedException {
-        Optional<accountModel> account = accountService.getAccountByToken(token);
+        Optional<AccountModel> account = accountService.getAccountByToken(token);
         if (account.isEmpty()) {
             throw new AccessDeniedException("Access is forbidden: invalid token");
         }
@@ -37,16 +37,16 @@ public class FicheMecaService {
     }
 
     public List<FicheMeca> getFicheMeca(Long id, String token) throws AccessDeniedException {
-        Optional<accountModel> account = accountService.getAccountByToken(token);
+        Optional<AccountModel> account = accountService.getAccountByToken(token);
         if (account.isEmpty()) {
             throw new AccessDeniedException("Access is forbidden: invalid token");
         }
 
         List<FicheMeca> ficheMecas = new ArrayList<>();
-        if(id != null){
+        if (id != null) {
             Optional<FicheMeca> ficheMeca = ficheMecaRepository.findById(id);
             ficheMeca.ifPresent(ficheMecas::add);
-        }else{
+        } else {
             ficheMecas.addAll(ficheMecaRepository.findAll());
         }
         return ficheMecas;

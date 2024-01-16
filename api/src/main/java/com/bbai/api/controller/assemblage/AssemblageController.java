@@ -1,7 +1,7 @@
 package com.bbai.api.controller.assemblage;
 
 import com.bbai.api.model.assemblage.Assemblage;
-import com.bbai.api.service.Account.tokenValidatorService;
+import com.bbai.api.service.account.TokenValidatorService;
 import com.bbai.api.service.assemblage.AssemblageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +17,7 @@ public class AssemblageController {
     AssemblageService assemblageService;
 
     @Autowired
-    private tokenValidatorService tokenService;
+    private TokenValidatorService tokenService;
 
     @PostMapping("/assemblage")
     public ResponseEntity<Object> postAssemblage(@RequestBody Assemblage assemblage,

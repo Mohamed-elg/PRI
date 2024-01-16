@@ -1,4 +1,4 @@
-package com.bbai.api.model.Account;
+package com.bbai.api.model.account;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,7 +17,7 @@ import lombok.NonNull;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class accountModel {
+public class AccountModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

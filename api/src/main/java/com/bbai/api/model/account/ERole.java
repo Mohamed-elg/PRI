@@ -1,4 +1,4 @@
-package com.bbai.api.model.Account;
+package com.bbai.api.model.account;
 
 public enum ERole {
     USER,
