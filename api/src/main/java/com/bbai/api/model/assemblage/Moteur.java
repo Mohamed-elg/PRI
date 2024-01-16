@@ -11,6 +11,6 @@ public class Moteur {
     private long Id;
     private String marque;
     private String numSerie;
-    private String typeMoteur;
+    private String type;
 
 }
