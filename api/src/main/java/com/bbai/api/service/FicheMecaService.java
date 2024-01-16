@@ -28,6 +28,7 @@ public class FicheMecaService {
         }
 
         FicheMeca ficheMeca = new FicheMeca();
+        ficheMeca.setNumeroDossier(ficheMecaDTO.getNumeroDossier());
         ficheMeca.setClient(ficheMecaDTO.getClient());
         ficheMeca.setAssemblage(ficheMecaDTO.getAssemblage());
         ficheMeca.setDateCreation(LocalDate.now());

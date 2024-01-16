@@ -15,11 +15,14 @@ public class FicheMeca {
     @GeneratedValue
     private long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Assemblage assemblage;
+    @Column(unique = true)
+    private String numeroDossier;
 
     @OneToOne(cascade = CascadeType.ALL)
     private ClientModel client;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Assemblage assemblage;
 
     @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate dateCreation;
