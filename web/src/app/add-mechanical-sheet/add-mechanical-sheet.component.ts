@@ -64,7 +64,7 @@ export class AddMechanicalSheetComponent implements OnInit{
   }
   
   onSubmit() {
-    console.log(this.equipments);
+    console.log(this.client);
 
     const payload = {
       "client": {
@@ -87,17 +87,19 @@ export class AddMechanicalSheetComponent implements OnInit{
       }
     }
 
-    this.equipments.forEach((equipment: any) => {
-      const equipmentType = equipment.selectedEquipement.toLowerCase();
-      const equipmentDetail = equipment.selectedDetail.toLowerCase();
-
-      const newEquipment = {
-        "type" : equipmentDetail,
-      };
-
-      (payload.assemblage as any)[equipmentType+'s'].push(newEquipment);
-
-    });
+    if(!!this.equipments){
+      this.equipments.forEach((equipment: any) => {
+        const equipmentType = equipment.selectedEquipement.toLowerCase();
+        const equipmentDetail = equipment.selectedDetail.toLowerCase();
+  
+        const newEquipment = {
+          "type" : equipmentDetail,
+        };
+  
+        (payload.assemblage as any)[equipmentType+'s'].push(newEquipment);
+  
+      });
+    }
 
     const payloadString = JSON.stringify(payload);
 
