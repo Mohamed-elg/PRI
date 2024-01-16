@@ -14,5 +14,5 @@ public class Reducteur {
 
     private String marque;
     private String numSerie;
-    private String typeReducteur;
+    private String type;
 }
