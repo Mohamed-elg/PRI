@@ -14,7 +14,7 @@ Java SpringBoot --> http://localhost:8081/api/
 Documentation --> http://localhost:8081/api/apidocs
 
 **FrontEnd** :
-Angular --> http://localhost
+Angular --> http://localhost:4200
 
 ## Lancement
 
