@@ -14,4 +14,5 @@ public class Pompe {
 
     private String marque;
     private String numSerie;
+    private String typePompe;
 }
