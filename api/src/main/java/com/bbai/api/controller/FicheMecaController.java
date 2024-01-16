@@ -3,7 +3,6 @@ package com.bbai.api.controller;
 import com.bbai.api.dto.FicheMecaDTO;
 import com.bbai.api.service.FicheMecaService;
 import com.bbai.api.service.account.TokenValidatorService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

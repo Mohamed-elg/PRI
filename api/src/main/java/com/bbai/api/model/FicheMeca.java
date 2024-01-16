@@ -2,7 +2,6 @@ package com.bbai.api.model;
 
 import com.bbai.api.model.assemblage.Assemblage;
 import com.bbai.api.model.client.ClientModel;
-
 import jakarta.persistence.*;
 import lombok.Data;
 
