@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.bbai.api.model.Client.ClientModel;
+import com.bbai.api.model.client.ClientModel;
 
 public interface ClientRepository extends JpaRepository<ClientModel, Long> {
 

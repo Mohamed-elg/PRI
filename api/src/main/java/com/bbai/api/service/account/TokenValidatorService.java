@@ -1,4 +1,4 @@
-package com.bbai.api.service.Account;
+package com.bbai.api.service.account;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,10 +7,10 @@ import lombok.Data;
 
 @Data
 @Service
-public class tokenValidatorService {
+public class TokenValidatorService {
 
     @Autowired
-    accountService compteService;
+    AccountService compteService;
 
     public boolean validTokenFromHeader(String authorizationHeader) {
         String incomingToken = getTokenFromHeader(authorizationHeader);

@@ -1,7 +1,7 @@
-package com.bbai.api.service.Account;
+package com.bbai.api.service.account;
 
-import com.bbai.api.model.Account.ERole;
-import com.bbai.api.model.Account.accountModel;
+import com.bbai.api.model.account.ERole;
+import com.bbai.api.model.account.AccountModel;
 import com.bbai.api.repository.AccountModelRepository;
 
 import lombok.AllArgsConstructor;
@@ -15,26 +15,26 @@ import org.springframework.stereotype.Service;
 @Service
 @NoArgsConstructor
 @AllArgsConstructor
-public class accountService {
+public class AccountService {
 
     @Autowired
     private AccountModelRepository accountModelRepository;
 
-    public Optional<accountModel> getAccountByLogs(String identifiant, String password) {
+    public Optional<AccountModel> getAccountByLogs(String identifiant, String password) {
         return accountModelRepository.findByIdentifiantAndPassword(identifiant, password);
     }
 
-    public Optional<accountModel> getAccountById(long accountId) {
+    public Optional<AccountModel> getAccountById(long accountId) {
         return accountModelRepository.findById(accountId);
     }
 
-    public Optional<accountModel> getAccountByToken(String token) {
+    public Optional<AccountModel> getAccountByToken(String token) {
         return accountModelRepository.findByToken(token);
     }
 
     public String createAccount(String Usertoken, String identifiant, String password, ERole role) {
         if (this.getAccountByToken(Usertoken).get().getRole() == ERole.ADMIN) {
-            accountModel newAccount = new accountModel();
+            AccountModel newAccount = new AccountModel();
             newAccount.setIdentifiant(identifiant);
             newAccount.setPassword(password);
             newAccount.setRole(role);

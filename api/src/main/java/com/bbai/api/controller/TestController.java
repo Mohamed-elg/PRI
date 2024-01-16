@@ -8,7 +8,7 @@ import com.bbai.api.model.mainModel;
 
 @RestController
 @RequestMapping("/api")
-public class testController {
+public class TestController {
 
     @GetMapping
     ResponseEntity<mainModel> root() {

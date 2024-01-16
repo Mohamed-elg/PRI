@@ -1,14 +1,14 @@
-package com.bbai.api.service.Client;
+package com.bbai.api.service.client;
 
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bbai.api.model.Account.ERole;
-import com.bbai.api.model.Client.ClientModel;
-import com.bbai.api.service.Account.accountService;
+import com.bbai.api.model.account.ERole;
+import com.bbai.api.model.client.ClientModel;
 import com.bbai.api.repository.ClientRepository;
+import com.bbai.api.service.account.AccountService;
 
 import lombok.NoArgsConstructor;
 
@@ -20,7 +20,7 @@ public class ClientService {
     private ClientRepository clientRepository;
 
     @Autowired
-    private accountService accountService;
+    private AccountService accountService;
 
     public Optional<ClientModel> getClientbyId(String token, long ClientId) {
         return clientRepository.findById(ClientId);

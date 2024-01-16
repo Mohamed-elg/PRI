@@ -1,8 +1,9 @@
 package com.bbai.api.controller;
 
 import com.bbai.api.dto.FicheMecaDTO;
-import com.bbai.api.service.Account.tokenValidatorService;
 import com.bbai.api.service.FicheMecaService;
+import com.bbai.api.service.account.TokenValidatorService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,16 +18,19 @@ public class FicheMecaController {
     private FicheMecaService ficheMecaService;
 
     @Autowired
-    private tokenValidatorService tokenService;
+    private TokenValidatorService tokenService;
 
     @PostMapping("/FicheMecanique")
-    public ResponseEntity<Object> postFicheMeca(@RequestBody FicheMecaDTO ficheMecaDTO, @RequestHeader("Authorization") String authorizationHeader){
+    public ResponseEntity<Object> postFicheMeca(@RequestBody FicheMecaDTO ficheMecaDTO,
+            @RequestHeader("Authorization") String authorizationHeader) {
         try {
-            return new ResponseEntity<>(ficheMecaService.saveFicheMeca(ficheMecaDTO,tokenService.getTokenFromHeader(authorizationHeader)), HttpStatus.ACCEPTED);
-        }catch(Exception e){
-            if(e instanceof AccessDeniedException){
+            return new ResponseEntity<>(
+                    ficheMecaService.saveFicheMeca(ficheMecaDTO, tokenService.getTokenFromHeader(authorizationHeader)),
+                    HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            if (e instanceof AccessDeniedException) {
                 return new ResponseEntity<>(e.toString(), HttpStatus.UNAUTHORIZED);
-            }else{
+            } else {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
 
@@ -34,13 +38,16 @@ public class FicheMecaController {
     }
 
     @GetMapping("/FicheMecanique")
-    public ResponseEntity<Object> getFicheMeca(@RequestParam(required = false) Long id, @RequestHeader("Authorization") String authorizationHeader){
-        try{
-            return new ResponseEntity<>(ficheMecaService.getFicheMeca(id,tokenService.getTokenFromHeader(authorizationHeader)),HttpStatus.OK);
-        }catch(Exception e){
-            if(e instanceof AccessDeniedException){
+    public ResponseEntity<Object> getFicheMeca(@RequestParam(required = false) Long id,
+            @RequestHeader("Authorization") String authorizationHeader) {
+        try {
+            return new ResponseEntity<>(
+                    ficheMecaService.getFicheMeca(id, tokenService.getTokenFromHeader(authorizationHeader)),
+                    HttpStatus.OK);
+        } catch (Exception e) {
+            if (e instanceof AccessDeniedException) {
                 return new ResponseEntity<>(e.toString(), HttpStatus.UNAUTHORIZED);
-            }else{
+            } else {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
 

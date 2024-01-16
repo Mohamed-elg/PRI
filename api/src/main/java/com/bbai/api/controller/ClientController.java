@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bbai.api.model.Client.ClientModel;
-import com.bbai.api.service.Account.tokenValidatorService;
-import com.bbai.api.service.Client.ClientService;
+import com.bbai.api.model.client.ClientModel;
+import com.bbai.api.service.account.TokenValidatorService;
+import com.bbai.api.service.client.ClientService;
 
 @RestController
 @RequestMapping("/api/client")
-public class clientController {
+public class ClientController {
 
     @Autowired
     ClientService clientService;
 
     @Autowired
-    private tokenValidatorService tokenService;
+    private TokenValidatorService tokenService;
 
     @PostMapping("/create")
     public ResponseEntity<Object> createClient(
