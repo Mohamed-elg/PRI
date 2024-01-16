@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'motor',
@@ -6,19 +6,6 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
   styleUrls: ['./motor.component.css']
 })
 export class MotorComponent {
-customValue: any;
-onEquipmentTypeChange() {
-throw new Error('Method not implemented.');
-}
-filterSpecificEquipments(arg0: any): any {
-throw new Error('Method not implemented.');
-}
-filterEquipmentTypes(arg0: any): any {
-throw new Error('Method not implemented.');
-}
-
-  @ViewChild('autreOptionInput') autreOptionInput!: ElementRef;
-
   showOptionInput: boolean = false;
   details: string[] = [
     'Moteur synchrone',
@@ -37,8 +24,7 @@ throw new Error('Method not implemented.');
   newEquipment: string = '';
   newDetail: string = '';
 
-  onEquipementSelect(event: Event, equipement: string) {
-    event.preventDefault();
+  onEquipementSelect(equipement: string) {
     this.selectedEquipement = equipement;
     this.updateVisibleDetails();
   }
@@ -51,11 +37,10 @@ throw new Error('Method not implemented.');
       this.visibleDetails.push('Pompe centrifuge', 'Pompe à vide', '+');
     }
     else
-    this.visibleDetails.push( '+');
+    this.visibleDetails.push('+');
   }
 
-  onDetailSelect(event: Event, detail: string) {
-    event.preventDefault();
+  onDetailSelect(detail: string) {
     if (detail === '+') {
       this.showOptionInput = true;
       this.selectedDetail = this.newDetail;
@@ -65,25 +50,11 @@ throw new Error('Method not implemented.');
   }
 
   onAddOptionClick() {
-    const autreOption = this.autreOptionInput.nativeElement.value;
-    console.log('Autre option spécifiée :', autreOption);
-    // Handle the logic for adding the custom option
-  }
-
-  onFormSubmit() {
-    console.log('Form submitted');
-    // Handle the logic for submitting the form
+    console.log('Autre option spécifiée :');
   }
 
   isDetailVisible(detail: string): boolean {
     return this.visibleDetails.includes(detail);
   }
 
-  onAddEquipmentClick(event: Event) {
-    event.preventDefault();
-    if (this.newEquipment) {
-      this.equipements.push(this.newEquipment);
-      this.newEquipment = '';
-    }
-  }
 }

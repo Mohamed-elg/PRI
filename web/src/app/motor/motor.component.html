@@ -1,40 +1,40 @@
-<form action="/" method="post" class="form-group">
-  <div class="row">
-    <div class="col">
-      <div class="dropdown">
-        <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          {{ selectedEquipement || 'Équipement' }}
-        </button>
-        <ul class="dropdown-menu">
-          <li *ngFor="let equipement of equipements">
-            <a class="dropdown-item" href="#" (click)="onEquipementSelect($event, equipement)">{{ equipement }}</a>
-          </li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#" (click)="onAddEquipmentClick($event)">+</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="col">
-      <div class="dropdown">
-        <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          {{ selectedDetail || 'Détail' }}
-        </button>
-        <ul class="dropdown-menu">
-          <li *ngFor="let detail of visibleDetails">
-            <a *ngIf="!isDetailVisible('Autre')" class="dropdown-item" href="#" (click)="onDetailSelect($event, detail)">{{ detail }}</a>
-          </li>
-          <li *ngIf="isDetailVisible('Autre')">
-            <hr class="dropdown-divider">
-            <li>
-              <input *ngIf="showOptionInput" type="text" class="form-control rounded" id="autreOption" [(ngModel)]="newDetail" placeholder="Nouveau Détail">
-              <button *ngIf="showOptionInput" id="addOption" type="button" class="btn btn-light" (click)="onAddOptionClick()">+</button>
+<div class="container">
+  <form class="form-group">
+    <div class="row">
+      <div class="col">
+        <div class="dropdown">
+          <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ selectedEquipement || 'Équipement' }}
+          </button>
+          <ul class="dropdown-menu">
+            <li *ngFor="let equipement of equipements">
+              <a class="dropdown-item" (click)="onEquipementSelect(equipement)">{{ equipement }}</a>
             </li>
-          
-        </ul>
+          </ul>
+        </div>
+      </div>
+      <div class="col">
+        <div class="row">
+          <div class="col">
+            <div class="dropdown">
+              <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ selectedDetail || 'Détail' }}
+              </button>
+              <ul class="dropdown-menu">
+                <li *ngFor="let detail of visibleDetails">
+                  <a *ngIf="!isDetailVisible('Autre')" class="dropdown-item" (click)="onDetailSelect(detail)">{{ detail }}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col">
+            <input *ngIf="showOptionInput" type="text" class="form-control rounded" id="autreOption" [(ngModel)]="newDetail" placeholder="Nouveau Détail">
+          </div>
+        </div>
+      </div>
+      <div class="col-1">
+        <button type="button" class="btn btn-primary" (click)="onAddOptionClick()">+</button>
       </div>
     </div>
-    <div class="col">
-      <button type="button" class="btn btn-primary" (click)="onAddOptionClick()">+</button>
-    </div>
-  </div>
-</form>
+  </form>
+</div>
