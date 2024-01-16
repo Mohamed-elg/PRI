@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Data
 public class FicheMecaDTO {
+    private String numeroDossier;
     private ClientModel client;
     private Assemblage assemblage;
 }
