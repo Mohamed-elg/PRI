@@ -2,10 +2,12 @@ package com.bbai.api.service;
 
 import com.bbai.api.dto.FicheMecaDTO;
 import com.bbai.api.model.FicheMeca;
+import com.bbai.api.model.Option;
 import com.bbai.api.model.account.AccountModel;
 import com.bbai.api.repository.FicheMecaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.nio.file.AccessDeniedException;
 import java.time.LocalDate;
@@ -21,6 +23,11 @@ public class FicheMecaService {
     @Autowired
     com.bbai.api.service.account.AccountService accountService;
 
+    @Autowired
+    OptionService optionService;
+
+
+    @Transactional
     public FicheMeca saveFicheMeca(FicheMecaDTO ficheMecaDTO, String token) throws AccessDeniedException {
         Optional<AccountModel> account = accountService.getAccountByToken(token);
         if (account.isEmpty()) {
@@ -31,6 +38,10 @@ public class FicheMecaService {
         ficheMeca.setNumeroDossier(ficheMecaDTO.getNumeroDossier());
         ficheMeca.setClient(ficheMecaDTO.getClient());
         ficheMeca.setAssemblage(ficheMecaDTO.getAssemblage());
+
+        List<Option> options = optionService.optionFromDTO(ficheMecaDTO.getOptions());
+        ficheMeca.setOptions(options);
+
         ficheMeca.setDateCreation(LocalDate.now());
         ficheMeca.setModifiedBy(account.get().getIdentifiant());
         ficheMeca.setLastModification(LocalDate.now());
