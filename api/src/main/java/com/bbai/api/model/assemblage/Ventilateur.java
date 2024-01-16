@@ -14,5 +14,5 @@ public class Ventilateur {
 
     private String marque;
     private String numSerie;
-    private String typeVentilateur;
+    private String type;
 }
