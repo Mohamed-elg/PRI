@@ -22,9 +22,20 @@ services:
       PGADMIN_DEFAULT_PASSWORD: root
     ports:
       - "8080:80"
+  api:
+    container_name: web
+    build: ./api
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "8081:8081"
   web:
     container_name: web
     build: ./web
     restart: always
+    depends_on:
+      - db
+      - api
     ports:
       - "80:8080"

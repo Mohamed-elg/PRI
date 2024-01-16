@@ -3,6 +3,7 @@ package com.bbai.api.controller.assemblage;
 import com.bbai.api.model.assemblage.Assemblage;
 import com.bbai.api.service.account.TokenValidatorService;
 import com.bbai.api.service.assemblage.AssemblageService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,28 @@ public class AssemblageController {
             if (e instanceof AccessDeniedException) {
                 return new ResponseEntity<>(e.toString(), HttpStatus.UNAUTHORIZED);
             } else {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+
+        }
+    }
+
+    @PutMapping("/assemblage/{id}")
+    public ResponseEntity<Object> putAssemblage(
+            @PathVariable long id,
+            @RequestBody Assemblage assemblage,
+            @RequestHeader("Authorization") String authorizationHeader) {
+        try {
+            return new ResponseEntity<>(
+                    assemblageService.updateAssemblage(id, assemblage, tokenService.getTokenFromHeader(authorizationHeader)),
+                    HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            if (e instanceof AccessDeniedException) {
+                return new ResponseEntity<>(e.toString(), HttpStatus.UNAUTHORIZED);
+            } else {
+                if(e instanceof EntityNotFoundException){
+                    return new ResponseEntity<>(e.toString(), HttpStatus.NOT_FOUND);
+                }
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
 

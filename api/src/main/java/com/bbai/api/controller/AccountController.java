@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -25,17 +26,27 @@ public class AccountController {
     private TokenValidatorService tokenService;
 
     @PostMapping("/create")
-    public ResponseEntity<Map<String, String>> createAccount(
+    public ResponseEntity<Object> createAccount(
             @RequestHeader("Authorization") String authorizationHeader,
             @RequestBody AccountModel request) {
 
         // Validate the token
         if (tokenService.validTokenFromHeader(authorizationHeader)) {
-            String created = compteService.createAccount(tokenService.getTokenFromHeader(authorizationHeader),
-                    request.getIdentifiant(), request.getPassword(), request.getRole());
             Map<String, String> response = new HashMap<>();
-            response.put("message", created);
-            return new ResponseEntity<>(response, HttpStatus.OK);
+            try {
+                String created = compteService.createAccount(tokenService.getTokenFromHeader(authorizationHeader),
+                        request.getIdentifiant(), request.getPassword(), request.getRole());
+                response.put("message", created);
+                return new ResponseEntity<>(response, HttpStatus.OK);
+            } catch (Exception e) {
+                if (e instanceof DataIntegrityViolationException) {
+                    response.put("message", e.toString());
+                    return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+                } else {
+                    return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+                }
+
+            }
         } else {
             // Invalid token
             Map<String, String> response = new HashMap<>();
