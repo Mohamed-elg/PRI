@@ -13,6 +13,8 @@ services:
       - "5432:5432"
     volumes:
       - ./pg_data:/var/lib/postgresql/data
+    networks:
+      - back
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4
@@ -20,6 +22,8 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: root
+    depends_on:
+      - db
     ports:
       - "8080:80"
   api:
@@ -32,6 +36,9 @@ services:
       - db
     ports:
       - "8081:8081"
+    networks:
+      - front
+      - back
   web:
     container_name: web
     build: ./web
@@ -40,4 +47,12 @@ services:
       - db
       - api
     ports:
-      - "81:8082"
+      - "8082:8082"
+    networks:
+      - front
+
+networks:
+  front:
+    driver: bridge
+  back:
+    driver: bridge
