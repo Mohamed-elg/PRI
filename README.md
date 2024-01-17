@@ -48,6 +48,7 @@ Documentation api --> http://localhost:8081/api/apidocs
 ## TODO
 
 - Corriger les bugs de routage Angular
+- Hasher les mots de passe et passer sur un système de token dynamique pour les requêtes api
 - Pour le stockage des images, voir dans un premier temps le stockage en tant qu'object dans la bdd
 - Pour le déploiment, isoler la bdd et la rendre innaccessible depuis l'exterieur (retirer mapping port docker)
 - Vérifier les injections SQL de base
