@@ -54,9 +54,21 @@ public class FicheMecaController {
         }
     }
 
+    @Operation(summary = "Get a Fiche Mecanique",
+            description = "Get one or all the Fiche Mecanique")
+    @ApiResponses(value ={
+            @ApiResponse(responseCode = "200",description = "Request accepted"),
+            @ApiResponse(responseCode = "401",description = "Bad permissions"),
+            @ApiResponse(responseCode = "500",description = "Internal error")
+    })
     @GetMapping("/FicheMecanique")
-    public ResponseEntity<Object> getFicheMeca(@RequestParam(required = false) Long id,
-            @RequestHeader("Authorization") String authorizationHeader) {
+    public ResponseEntity<Object> getFicheMeca(
+            @Parameter(name = "id", description = "Id of the Fiche Mecanique (get all the fiche if not specify)")
+            @RequestParam(required = false)
+            Long id,
+            @Parameter(name = "Access Token", description = "Bearer token corresponding to an existing account")
+            @RequestHeader("Authorization")
+            String authorizationHeader) {
         try {
             return new ResponseEntity<>(
                     ficheMecaService.getFicheMeca(id, tokenService.getTokenFromHeader(authorizationHeader)),
