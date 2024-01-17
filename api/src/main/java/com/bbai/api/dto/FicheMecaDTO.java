@@ -2,7 +2,6 @@ package com.bbai.api.dto;
 
 import com.bbai.api.model.assemblage.Assemblage;
 import com.bbai.api.model.client.ClientModel;
-import jakarta.persistence.ManyToMany;
 import lombok.Data;
 
 import java.util.List;

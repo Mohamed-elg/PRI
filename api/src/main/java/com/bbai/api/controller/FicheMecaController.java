@@ -28,7 +28,7 @@ public class FicheMecaController {
     @Operation(summary = "Create a Fiche Mecanique",
             description = "Create a new Fiche Mecanique corresponding to the body ")
     @ApiResponses(value ={
-            @ApiResponse(responseCode = "202",description = "Succesfully created"),
+            @ApiResponse(responseCode = "201",description = "Succesfully created"),
             @ApiResponse(responseCode = "401",description = "Bad permissions"),
             @ApiResponse(responseCode = "500",description = "Internal error")
     })

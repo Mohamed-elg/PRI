@@ -36,7 +36,7 @@ public class AccountController {
     @Operation(summary = "Create an account",description = "Create the account corresponding to the body " +
             "(You need to be an admin to do this operation)")
     @ApiResponses(value ={
-            @ApiResponse(responseCode = "202",description = "Succesfully created"),
+            @ApiResponse(responseCode = "201",description = "Succesfully created"),
             @ApiResponse(responseCode = "409",description = "The account already exists"),
             @ApiResponse(responseCode = "401",description = "Bad permissions"),
             @ApiResponse(responseCode = "500",description = "Internal error")
