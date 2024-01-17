@@ -5,7 +5,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class RegisterService {
-  private readonly RegisterUrl = 'http://localhost:8081/api/account/create';
+  // private readonly RegisterUrl = 'http://localhost:8081/api/account/create';
+  private readonly RegisterUrl = `${localStorage.getItem(
+    'URL_API'
+  )}/account/create`;
 
   constructor(private http: HttpClient) {}
 

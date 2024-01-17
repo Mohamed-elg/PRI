@@ -15,24 +15,29 @@ interface LoginResponse {
 @Component({
   selector: 'connection',
   templateUrl: './connection.component.html',
-  styleUrls: ['./connection.component.css']
+  styleUrls: ['./connection.component.css'],
 })
 export class ConnectionComponent implements OnInit {
   loginForm!: FormGroup;
 
-  login_url = 'http://localhost:8081/api/account/auth';
+  // login_url = 'http://localhost:8081/api/account/auth';
+  login_url = `${localStorage.getItem('URL_API')}/account/auth`;
 
-  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) { }
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
-      this.loginForm = this.fb.group({
-        identifiant:   ['', Validators.required],
-        password: ['', Validators.required]
-      });
+    this.loginForm = this.fb.group({
+      identifiant: ['', Validators.required],
+      password: ['', Validators.required],
+    });
   }
 
   onSubmit() {
-    if(this.loginForm.valid) {
+    if (this.loginForm.valid) {
       const formData = this.loginForm.value;
 
       this.authService.login(formData).subscribe(
@@ -42,8 +47,7 @@ export class ConnectionComponent implements OnInit {
         (error) => {
           console.error('Login failed', error);
         }
-      )
+      );
     }
   }
-
 }

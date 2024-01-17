@@ -13,7 +13,8 @@ interface LoginResponse {
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly loginUrl = 'http://localhost:8081/api/account/auth';
+  // private readonly loginUrl = 'http://localhost:8081/api/account/auth';
+  private readonly loginUrl = `${localStorage.getItem('URL_API')}/account/auth`;
 
   constructor(private http: HttpClient) {}
 
