@@ -2,6 +2,8 @@ package com.bbai.api;
 
 import com.bbai.api.model.Option;
 import com.bbai.api.repository.OptionRepository;
+
+import org.springframework.core.env.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -16,6 +18,9 @@ import java.util.List;
 
 @Component
 public class InitApplication implements ApplicationRunner {
+
+    @Autowired
+    private Environment environment;
 
     @Autowired
     private AccountModelRepository accountRepository;
@@ -35,10 +40,12 @@ public class InitApplication implements ApplicationRunner {
             root.setToken(hascode.toString());
             this.accountRepository.save(root);
         } catch (Exception DataIntegrityViolationException) {
+            System.out.println("           ------         ");
             System.out.println("Init user already exists !");
+            System.out.println("           ------         ");
         }
 
-        try{
+        try {
             List<Option> options = new ArrayList<>();
             options.add(new Option("Codeur"));
             options.add(new Option("Dynamo"));
@@ -50,8 +57,21 @@ public class InitApplication implements ApplicationRunner {
             options.add(new Option("Pignon"));
 
             optionRepository.saveAll(options);
-        }catch(Exception DataIntegrityViolationException){
+        } catch (Exception DataIntegrityViolationException) {
+            System.out.println("           --------         ");
             System.out.println("Base options already exist !");
+            System.out.println("           --------         ");
+        }
+
+        try {
+            String databaseUrl = environment.getProperty("spring.datasource.url");
+            System.out.println("     -------     ");
+            System.out.println("Using DB :" + databaseUrl);
+            System.out.println("     -------     ");
+        } catch (Exception e) {
+            System.out.println("     -------     ");
+            System.out.println("Error fetching DB variable");
+            System.out.println("     -------     ");
         }
 
     }

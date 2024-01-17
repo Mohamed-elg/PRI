@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
 
@@ -7,8 +7,12 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
+
+  ngOnInit(): void {
+    localStorage.setItem('URL_API', 'http://localhost:8081/api');
+  }
 
   isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
