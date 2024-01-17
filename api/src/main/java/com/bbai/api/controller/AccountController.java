@@ -59,11 +59,11 @@ public class AccountController {
             return new ResponseEntity<>(response, HttpStatus.CREATED);
         } catch (Exception e) {
             if (e instanceof DataIntegrityViolationException) {
-                response.put("message", e.getMessage().toString());
+                response.put("message", e.getMessage());
                 return new ResponseEntity<>(response, HttpStatus.CONFLICT);
             } else {
                 if (e instanceof AccessDeniedException) {
-                    response.put("message", e.getMessage().toString());
+                    response.put("message", e.getMessage());
                     return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
                 } else {
                     return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
