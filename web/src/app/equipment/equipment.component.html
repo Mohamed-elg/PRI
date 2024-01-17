@@ -1,40 +1,70 @@
-<div class="container" *ngFor="let container of containers">
-  <form class="form-group">
-    <div class="row">
-      <div class="col">
-        <div class="dropdown">
-          <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            {{ container.selectedEquipement || 'Équipement' }}
-          </button>
-          <ul class="dropdown-menu">
-            <li *ngFor="let equipement of container.equipements">
-              <a class="dropdown-item" (click)="onEquipementSelect(container, equipement)" >{{ equipement }}</a>
-            </li>
-          </ul>
-        </div>
+<div class="container d-flex justify-content-center" *ngIf="action ==='view'; else addSheet">
+  <div *ngIf="equipments">
+    <div class="card" style="width: 18rem;">
+      <div class="card-header">
+        Assemblage
       </div>
-      <div class="col">
-        <div class="row">
-          <div class="col">
-            <div class="dropdown">
-              <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                {{ container.selectedDetail || 'Détail' }}
-              </button>
-              <ul class="dropdown-menu">
-                <li *ngFor="let detail of container.visibleDetails">
-                  <a *ngIf="!isDetailVisible(container,'Autre')" class="dropdown-item" (click)="onDetailSelect(container,detail)" (click)="updateEquipmentsValues()">{{ detail }}</a>
-                </li>
-              </ul>
+      <ul class="list-group list-group-flush" *ngFor="let moteur of equipments.moteurs">
+        <li class="list-group-item">Moteur {{ moteur.type }}</li>
+      </ul>
+      <ul class="list-group list-group-flush" *ngFor="let pompe of equipments.pompes">
+        <li class="list-group-item">Pompe {{ pompe.type }}</li>
+      </ul>
+      <ul class="list-group list-group-flush" *ngFor="let reducteur of equipments.reducteurs">
+        <li class="list-group-item">Reducteur {{ reducteur.type }}</li>
+      </ul>
+      <ul class="list-group list-group-flush" *ngFor="let ventilateur of equipments.ventilateurs">
+        <li class="list-group-item">Ventilateur {{ ventilateur.type }}</li>
+      </ul>
+    </div>
+  </div>
+  <div *ngIf="!equipments">
+    <div class="alert alert-primary" role="alert">
+      Pas d'assemblage
+    </div>
+  </div>
+</div>
+
+
+<ng-template #addSheet>
+  <div class="container" *ngFor="let container of containers">
+    <form class="form-group">
+      <div class="row">
+        <div class="col">
+          <div class="dropdown">
+            <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{ container.selectedEquipement || 'Équipement' }}
+            </button>
+            <ul class="dropdown-menu">
+              <li *ngFor="let equipement of container.equipements">
+                <a class="dropdown-item" (click)="onEquipementSelect(container, equipement)" >{{ equipement }}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col">
+          <div class="row">
+            <div class="col">
+              <div class="dropdown">
+                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  {{ container.selectedDetail || 'Détail' }}
+                </button>
+                <ul class="dropdown-menu">
+                  <li *ngFor="let detail of container.visibleDetails">
+                    <a *ngIf="!isDetailVisible(container,'Autre')" class="dropdown-item" (click)="onDetailSelect(container,detail)" (click)="updateEquipmentsValues()">{{ detail }}</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col">
+              <input *ngIf="container.showOptionInput" type="text" class="form-control rounded" id="autreOption" name="inputDetail" [(ngModel)]="container.newDetail" placeholder="Nouveau Détail" (input)="updateEquipmentsValues()">
             </div>
           </div>
-          <div class="col">
-            <input *ngIf="container.showOptionInput" type="text" class="form-control rounded" id="autreOption" name="inputDetail" [(ngModel)]="container.newDetail" placeholder="Nouveau Détail" (input)="updateEquipmentsValues()">
-          </div>
+        </div>
+        <div class="col-1">
+          <button type="button" class="btn btn-primary" (click)="onAddOptionClick()">+</button>
         </div>
       </div>
-      <div class="col-1">
-        <button type="button" class="btn btn-primary" (click)="onAddOptionClick()">+</button>
-      </div>
-    </div>
-  </form>
-</div>
+    </form>
+  </div>
+</ng-template>

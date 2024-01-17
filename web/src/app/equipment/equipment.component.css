@@ -22,3 +22,12 @@ form {
     color: #ffffff;
     background-color: #00143f;
 }
+
+.card-header{
+    background-color: #012061;
+    color: #ffffff;
+}
+
+.card {
+    margin-top: 5%;
+}

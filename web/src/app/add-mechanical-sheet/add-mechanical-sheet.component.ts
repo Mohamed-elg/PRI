@@ -64,9 +64,8 @@ export class AddMechanicalSheetComponent implements OnInit{
   }
   
   onSubmit() {
-    console.log(this.client);
-
     const payload = {
+      "numeroDossier": '',
       "client": {
         "id": 0,
         "nom": this.client.client,
@@ -84,7 +83,8 @@ export class AddMechanicalSheetComponent implements OnInit{
         "pompes": [],
         "reducteurs": [],
         "ventilateurs": []
-      }
+      },
+      "options": []
     }
 
     if(!!this.equipments){

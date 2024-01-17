@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'connection', component: ConnectionComponent },
   { path: 'list-mechanical-sheets', component: ListMechanicalSheetsComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'mechanical-sheet/:action/:id', component: MechanicalSheetComponent },
   { path: '', redirectTo: '/connection', pathMatch: 'full' },
 ];
 

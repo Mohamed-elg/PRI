@@ -10,7 +10,7 @@
 </div>
 
 <div class="list-group list-group-container" *ngFor="let sheet of list_sheets">
-  <a href="#" class="list-group-item list-group-item-action">
+  <a [routerLink]="['/mechanical-sheet', 'view' , sheet.id]" class="list-group-item list-group-item-action">
     <div class="row">
       <div class="col">{{ sheet.id }}</div>
       <div class="col">{{ sheet.client?.nom || 'N/A' }}</div>

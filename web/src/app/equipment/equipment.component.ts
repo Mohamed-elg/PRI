@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ShareDataService } from '../services/share-data-service.service';
 
 interface Container {
@@ -17,6 +17,9 @@ interface Container {
   styleUrls: ['./equipment.component.css']
 })
 export class EquipementComponent {
+  @Input() action!: string;
+  @Input() equipments!: any;
+
   containers: Container[] = [];
 
   constructor(private shareDataService: ShareDataService) {

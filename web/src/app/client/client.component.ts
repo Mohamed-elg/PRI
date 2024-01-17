@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ShareDataService } from '../services/share-data-service.service';
+import { Input } from '@angular/core';
 
 export class Client {
   constructor(
@@ -19,7 +20,8 @@ export class Client {
   styleUrls: ['./client.component.css']
 })
 export class ClientComponent implements OnInit{
-  client: Client = new Client();
+  @Input() client: Client = new Client();
+  @Input() disabled!: boolean;
 
   constructor(private sharedDataService: ShareDataService) { }
 

@@ -1,31 +1,31 @@
 <div class="container">
 
-    <form action="/" method="post">
+    <form>
   
       <div class="form-group">
         <label for="client">Client</label>
-        <input type="text" class="form-control rounded" id="client" placeholder="Nom du client" name="client" [(ngModel)]="client.client" (input)="updateClientValue()">
+        <input type="text" class="form-control rounded" id="client" placeholder="Nom du client" name="client" [(ngModel)]="client.client" (input)="updateClientValue()" [disabled]="disabled">
         
         <label for="numero">Numéro</label>
-        <input type="text" class="form-control rounded" id="numero" placeholder="Numéro" name="inputNumber" [(ngModel)]="client.number" (input)="updateClientValue()">
+        <input type="text" class="form-control rounded" id="numero" placeholder="Numéro" name="inputNumber" [(ngModel)]="client.number" (input)="updateClientValue()" [disabled]="disabled">
       </div>
   
       <div class="form-group">
         <label for="nom">Nom</label>
-        <input type="text" class="form-control rounded" id="nom" placeholder="Nom du référent" name="inputName" [(ngModel)]="client.name" (input)="updateClientValue()"> 
+        <input type="text" class="form-control rounded" id="nom" placeholder="Nom du référent" name="inputName" [(ngModel)]="client.name" (input)="updateClientValue()" [disabled]="disabled"> 
         <label for="tel">Tél</label>
-        <input type="text" class="form-control rounded" id="tel" placeholder="Numéro de téléphone" name="inputPhone" [(ngModel)]="client.phone" (input)="updateClientValue()">
+        <input type="text" class="form-control rounded" id="tel" placeholder="Numéro de téléphone" name="inputPhone" [(ngModel)]="client.phone" (input)="updateClientValue()" [disabled]="disabled">
         
         <label for="date">Date</label>
-        <input type="date" class="form-control rounded" id="date" name="inputDate" [(ngModel)]="client.date" (input)="updateClientValue()">
+        <input type="date" class="form-control rounded" id="date" name="inputDate" [(ngModel)]="client.date" (input)="updateClientValue()" [disabled]="disabled">
       </div>
   
       <div class="form-group">
         <label for="ref">Réf.</label>
-        <input type="text" class="form-control rounded" id="ref" placeholder="Référence" name="inputRef" [(ngModel)]="client.ref" (input)="updateClientValue()">
+        <input type="text" class="form-control rounded" id="ref" placeholder="Référence" name="inputRef" [(ngModel)]="client.ref" (input)="updateClientValue()" [disabled]="disabled">
         
         <label for="mail">Mail</label>
-        <input type="email" class="form-control rounded" id="mail" placeholder="Adresse e-mail" name="inputMail" [(ngModel)]="client.mail" (input)="updateClientValue()">
+        <input type="email" class="form-control rounded" id="mail" placeholder="Adresse e-mail" name="inputMail" [(ngModel)]="client.mail" (input)="updateClientValue()" [disabled]="disabled">
       </div>
     </form>
   </div>

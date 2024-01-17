@@ -1,6 +1,17 @@
-<div class="row">
-    <client></client>
+<div *ngIf="action ==='view'; else addSheet">
+    <div class="row">
+        <client [client]="clientData" [disabled]="true"></client>
+    </div>
+    <div class="row">
+       <equipment [action]="action" [equipments]="equipments"></equipment>
+    </div>
 </div>
-<div class="row">
-   <equipment></equipment>
-</div>
+
+<ng-template #addSheet>
+    <div class="row">
+        <client></client>
+    </div>
+    <div class="row">
+       <equipment></equipment>
+    </div>
+</ng-template>
