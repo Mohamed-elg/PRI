@@ -1,4 +1,4 @@
-package com.bbai.api.controller.assemblage;
+package com.bbai.api.controller;
 
 import com.bbai.api.model.assemblage.Assemblage;
 import com.bbai.api.service.account.TokenValidatorService;
