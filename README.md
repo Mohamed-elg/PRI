@@ -38,12 +38,11 @@ Documentation api --> http://localhost:8081/api/apidocs
 Le projet est livré avec Docker (c.f docker-compose.yml)
 
 Pour lancer l'application --> `docker compose up`
-Puis sur http://localhost:8082 le compte par défaut est **root**/**root**
-
-**N.B : Ajuster les variables d'environnement et les chemins pour les volumes au besoin**
-
+Web --> http://localhost:8082 le compte par défaut est **root**/**root**
 Api --> http://localhost:8081/api
 Documentation api --> http://localhost:8081/api/apidocs
+
+**N.B : Ajuster les variables d'environnement et les chemins pour les volumes au besoin**
 
 ## TODO
 
