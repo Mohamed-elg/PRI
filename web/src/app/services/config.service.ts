@@ -10,18 +10,6 @@ export class ConfigService {
 
   constructor(private http: HttpClient) {}
 
-  ngOnInit(): void {
-    this.getConfig().subscribe(
-      (data) => {
-        localStorage.setItem('URL_API', data.URL_API);
-      },
-      (error) => {
-        console.error('Error fetching configuration:', error);
-        localStorage.setItem('URL_API', 'http://localhost:8081/api');
-      }
-    );
-  }
-
   getConfig(): Observable<any> {
     return this.http.get(this.configUrl);
   }
