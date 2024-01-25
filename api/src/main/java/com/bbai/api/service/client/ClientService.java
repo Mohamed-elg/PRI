@@ -22,21 +22,38 @@ public class ClientService {
     @Autowired
     private AccountService accountService;
 
-    public Optional<ClientModel> getClientbyId(String token, long ClientId) {
-        return clientRepository.findById(ClientId);
+    public Optional<ClientModel> getClientbyId(String token, long ClientId) throws AccessDeniedException {
+        if (accountService.getAccountByToken(token).isPresent()) {
+            return clientRepository.findById(ClientId);
+        } else {
+            throw new AccessDeniedException("Access is forbidden: invalid token");
+        }
     }
 
-    public void deleteClientbyId(String token, long ClientId) {
-        ClientModel client = clientRepository.findById(ClientId).get();
-        clientRepository.delete(client);
+    public void deleteClientbyId(String token, long ClientId) throws AccessDeniedException {
+        if (accountService.getAccountByToken(token).isPresent()) {
+            ClientModel client = clientRepository.findById(ClientId).get();
+            clientRepository.delete(client);
+        } else {
+            throw new AccessDeniedException("Access is forbidden: invalid token");
+        }
+
     }
 
-    public Optional<ClientModel> getClientbyRef(String token, String ClientRef) {
-        return clientRepository.findByRef(ClientRef);
+    public Optional<ClientModel> getClientbyRef(String token, String ClientRef) throws AccessDeniedException {
+        if (accountService.getAccountByToken(token).isPresent()) {
+            return clientRepository.findByRef(ClientRef);
+        } else {
+            throw new AccessDeniedException("Access is forbidden: invalid token");
+        }
     }
 
-    public Optional<ClientModel> getClientbyNom(String token, String ClientNom) {
-        return clientRepository.findByNom(ClientNom);
+    public Optional<ClientModel> getClientbyNom(String token, String ClientNom) throws AccessDeniedException {
+        if (accountService.getAccountByToken(token).isPresent()) {
+            return clientRepository.findByNom(ClientNom);
+        } else {
+            throw new AccessDeniedException("Access is forbidden: invalid token");
+        }
     }
 
     public ClientModel updateClientbyId(String token, long ClientId, ClientModel client) throws AccessDeniedException {
