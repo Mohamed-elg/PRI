@@ -37,7 +37,7 @@
             </button>
             <ul class="dropdown-menu">
               <li *ngFor="let equipement of container.equipements">
-                <a class="dropdown-item" (click)="onEquipementSelect(container, equipement)" >{{ equipement }}</a>
+                <a class="dropdown-item" (click)="onEquipementSelect(container, equipement)" (click)="updateEquipmentsValues()">{{ equipement }}</a>
               </li>
             </ul>
           </div>

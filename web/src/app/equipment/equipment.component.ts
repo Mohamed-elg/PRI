@@ -29,7 +29,7 @@ export class EquipementComponent {
   addContainer() {
     const newContainer: Container = {
       showOptionInput: false,
-      equipements: ['Moteur', 'Réducteur', 'Pompe', 'Ventilateur', 'Soufflante'],
+      equipements: ['Moteur', 'Réducteur', 'Pompe', 'Ventilateur'],
       selectedEquipement: '',
       selectedDetail: '',
       visibleDetails: [],
@@ -80,7 +80,7 @@ export class EquipementComponent {
   updateEquipmentsValues() {
     const selectedValues = this.containers.map(container => ({
       selectedEquipement: container.selectedEquipement,
-      selectedDetail: container.selectedDetail || container.newDetail,
+      selectedDetail: container.selectedDetail || container.newDetail || '',
     }));
 
     this.shareDataService.updateEquipmentsValues(selectedValues);

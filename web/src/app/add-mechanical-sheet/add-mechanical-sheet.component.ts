@@ -2,46 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ShareDataService } from '../services/share-data-service.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-export class ApiPayload {
-  constructor(
-    public client: {
-      id: number;
-      nom: string;
-      ref: string;
-      contact: {
-        id: number;
-        nom: string;
-        tel: string;
-        mail: string;
-      };
-    },
-    public assemblage: {
-      id: number;
-      moteurs: {
-        marque: string;
-        numSerie: string;
-        typeMoteur: string;
-        id: number;
-      }[];
-      pompes: {
-        id: number;
-        marque: string;
-        numSerie: string;
-      }[];
-      reducteurs: {
-        id: number;
-        marque: string;
-        numSerie: string;
-      }[];
-      ventilateurs: {
-        id: number;
-        marque: string;
-        numSerie: string;
-      }[];
-    }
-  ) {}
-}
-
 @Component({
   selector: 'add-mechanical-sheet',
   templateUrl: './add-mechanical-sheet.component.html',
@@ -52,6 +12,9 @@ export class AddMechanicalSheetComponent implements OnInit {
   equipments!: any;
   // mechanical_sheet_url = 'http://localhost:8081/api/FicheMecanique';
   mechanical_sheet_url = `${localStorage.getItem('URL_API')}/FicheMecanique`;
+
+  errorStatus: boolean = false;
+  submitStatus: boolean = false;
 
   constructor(
     private shareDataService: ShareDataService,
@@ -69,7 +32,7 @@ export class AddMechanicalSheetComponent implements OnInit {
 
   onSubmit() {
     const payload = {
-      "numeroDossier": '',
+      "numeroDossier": this.client.number,
       "client": {
         "id": 0,
         "nom": this.client.client,
@@ -123,10 +86,21 @@ export class AddMechanicalSheetComponent implements OnInit {
       .subscribe(
         (response) => {
           console.log('Post request successful:', response);
+          setTimeout(() => {
+            this.resetForm();
+            this.submitStatus = true;
+          }, 0);
         },
         (error) => {
           console.error('Error in post request:', error);
+          this.errorStatus = true;
         }
       );
+  }
+
+  resetForm() {
+    this.client = null;
+    this.equipments = null;
+    this.errorStatus = false;
   }
 }

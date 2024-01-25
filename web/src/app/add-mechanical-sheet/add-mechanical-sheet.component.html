@@ -1,5 +1,17 @@
+<div class="row" *ngIf="submitStatus">
+    <div  class="alert alert-success" role="alert">
+        Fiche sauvegardée !
+    </div>
+</div>
+
 <mechanical-sheet></mechanical-sheet>
 
 <div class="row">
     <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+</div>
+
+<div class="row" *ngIf="errorStatus">
+    <div  class="alert alert-danger" role="alert">
+        Erreur dans l'envoi de la fiche.
+    </div>
 </div>

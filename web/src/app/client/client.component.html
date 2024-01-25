@@ -1,13 +1,11 @@
 <div class="container">
-
     <form>
-  
       <div class="form-group">
         <label for="client">Client</label>
         <input type="text" class="form-control rounded" id="client" placeholder="Nom du client" name="client" [(ngModel)]="client.client" (input)="updateClientValue()" [disabled]="disabled">
         
         <label for="numero">Numéro</label>
-        <input type="text" class="form-control rounded" id="numero" placeholder="Numéro" name="inputNumber" [(ngModel)]="client.number" (input)="updateClientValue()" [disabled]="disabled">
+        <input type="text" class="form-control rounded is-invalid" id="numero" placeholder="Numéro" name="inputNumber" [(ngModel)]="client.number" (input)="updateClientValue()" [disabled]="disabled" required>
       </div>
   
       <div class="form-group">

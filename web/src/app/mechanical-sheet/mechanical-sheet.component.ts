@@ -42,7 +42,7 @@ export class MechanicalSheetComponent implements OnInit{
         this.clientData.date = this.mechanicalSheet.dateCreation || '';
         this.clientData.mail = client?.contact.mail || '';
         this.clientData.name = client?.contact.nom || '';
-        this.clientData.number = client?.id || '';
+        this.clientData.number = this.mechanicalSheet.numeroDossier || '';
         this.clientData.phone = client?.contact.tel || '';
         this.clientData.ref = client?.ref || '';
   
