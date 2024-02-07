@@ -1,3 +1,18 @@
 .row {
     margin: 0.5%;
 }
+
+button {
+    background-color: #012061;
+    border-color: #012061;
+}
+
+button:hover {
+    background-color: #000c25;
+    border-color: #000c25;
+}
+
+button:active {
+    background-color: #000c25 !important;
+    border-color: #000c25 !important;
+}

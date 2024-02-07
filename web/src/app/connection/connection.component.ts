@@ -20,7 +20,6 @@ interface LoginResponse {
 export class ConnectionComponent implements OnInit {
   loginForm!: FormGroup;
 
-  // login_url = 'http://localhost:8081/api/account/auth';
   login_url = `${localStorage.getItem('URL_API')}/account/auth`;
 
   constructor(
@@ -42,7 +41,7 @@ export class ConnectionComponent implements OnInit {
 
       this.authService.login(formData).subscribe(
         (response) => {
-          this.router.navigate(['/add-mechanical-sheet']);
+          this.router.navigate(['/mechanical-sheet/:action/:id']);
         },
         (error) => {
           console.error('Login failed', error);
